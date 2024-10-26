@@ -8,7 +8,7 @@ public class CreateObjCourse implements Serializable{
 
     public CreateObjCourse(String courseName, String filepath) {
         BufferedReader reader = null;
-        String line = "";
+        String line;
         course.setCourseName(courseName);
 
         try {
@@ -47,13 +47,13 @@ public class CreateObjCourse implements Serializable{
                 }
             }
         }catch (Exception e) {
-            e.printStackTrace(); // uncomment this to check Bug!!
+//            e.printStackTrace(); // uncomment this to check Bug!!
         }finally {
             try {
                 assert reader != null;
                 reader.close();
             } catch (IOException e) {
-                e.printStackTrace(); // uncomment this to check Bug!!
+//                e.printStackTrace(); // uncomment this to check Bug!!
             }
             // creating root subject
             course.createRoot();
@@ -70,7 +70,7 @@ public class CreateObjCourse implements Serializable{
             out.writeObject(course);
             System.out.println("Course Saved");
         }catch (Exception e) {
-            e.printStackTrace(); // uncomment this to check Bug!!
+//            e.printStackTrace(); // uncomment this to check Bug!!
         }
     }
 

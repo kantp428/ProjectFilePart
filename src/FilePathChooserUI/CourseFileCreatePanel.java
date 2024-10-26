@@ -220,8 +220,6 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
 
         } else { // Valid CSV file
             new CreateObjCourse(nameTextField.getText(),filePathLb.getText());
-
-            statusLb.setText("Course Create");
             Time.delay(1000, ()->statusLb.setText("course Status"));
         }
     }
