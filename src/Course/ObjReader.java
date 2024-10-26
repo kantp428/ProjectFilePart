@@ -18,8 +18,8 @@ public class ObjReader {
     }
 
     public static void main(String[] args) {
-        CreateObjCourse c = new CreateObjCourse("CPE","D:\\Java66\\JavaFile\\ProjectFilePart\\src\\CSVfile\\Course_CPE.csv");
-        Course cpe = ObjReader.readObj("D:\\Java66\\JavaFile\\untitled\\src\\CourseObjFile\\Course_CPE.ser");
+//        CreateObjCourse c = new CreateObjCourse("CPE","D:\\Java66\\JavaFile\\ProjectFilePart\\src\\CSVfileTest\\Course_CPE.csv");
+        Course cpe = ObjReader.readObj("D:\\Java66\\JavaFile\\ProjectFilePart\\src\\CourseObjFile\\Course_CPE.ser");
         // Using this line to run test -->
         for(String code : cpe.getAllsubCode()) {
             System.out.println("Name: " + cpe.getIdMap().get(code).getName());
@@ -39,5 +39,6 @@ public class ObjReader {
             System.out.println("\n");
         }
         // run test -->
+
     }
 }

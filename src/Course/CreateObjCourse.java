@@ -8,7 +8,7 @@ public class CreateObjCourse implements Serializable{
 
     public CreateObjCourse(String courseName, String filepath) {
         BufferedReader reader = null;
-        String line;
+        String line = "";
         course.setCourseName(courseName);
 
         try {
@@ -47,29 +47,30 @@ public class CreateObjCourse implements Serializable{
                 }
             }
         }catch (Exception e) {
-//            e.printStackTrace(); // uncomment this to check Bug!!
+            e.printStackTrace(); // uncomment this to check Bug!!
         }finally {
             try {
                 assert reader != null;
                 reader.close();
             } catch (IOException e) {
-//                e.printStackTrace(); // uncomment this to check Bug!!
+                e.printStackTrace(); // uncomment this to check Bug!!
             }
             // creating root subject
             course.createRoot();
             this.createCourseFile(courseName);
+            System.out.println("Create Object File");
         }
     }
 
     // Create Obj file method -->
     public void createCourseFile(String fName) {
         try {
-            FileOutputStream fileout = new FileOutputStream("D:\\Java66\\JavaFile\\untitled\\src\\CourseObjFile\\Course_"+fName+".ser");
+            FileOutputStream fileout = new FileOutputStream("D:\\Java66\\JavaFile\\ProjectFilePart\\src\\CourseObjFile\\Course_"+fName+".ser");
             ObjectOutputStream out = new ObjectOutputStream(fileout);
             out.writeObject(course);
             System.out.println("Course Saved");
         }catch (Exception e) {
-//            e.printStackTrace(); // uncomment this to check Bug!!
+            e.printStackTrace(); // uncomment this to check Bug!!
         }
     }
 
