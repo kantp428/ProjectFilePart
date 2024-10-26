@@ -9,6 +9,7 @@ public class CreateObjCourse implements Serializable{
     public CreateObjCourse(String courseName, String filepath) {
         BufferedReader reader = null;
         String line;
+        course.setCourseName(courseName);
 
         try {
             reader = new BufferedReader(new FileReader(filepath));
