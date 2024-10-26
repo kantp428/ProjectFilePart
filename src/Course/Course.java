@@ -6,9 +6,15 @@ import java.io.*;
 public class Course implements Serializable {
 
     private String courseName;
-    public ArrayList<String> AllsubCode = new ArrayList<String>();
-    public ArrayList<Subject> rootsub = new ArrayList<Subject>();
-    public HashMap<String, Subject> idMap = new HashMap<String, Subject>();
+    private ArrayList<String> AllsubCode = new ArrayList<String>();
+    private ArrayList<Subject> rootsub = new ArrayList<Subject>();
+    private HashMap<String, Subject> idMap = new HashMap<String, Subject>();
+
+    // Getter & Setter
+    public HashMap<String,Subject> getIdMap() {return idMap;}
+    public ArrayList<Subject> getRootsub() {return rootsub;}
+    public ArrayList<String> getAllsubCode() {return AllsubCode;}
+    public String getCourseName() {return courseName;}
 
     public void createRoot() {
         for(String code : this.AllsubCode) {

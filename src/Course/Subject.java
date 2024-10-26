@@ -7,8 +7,8 @@ public class Subject implements Serializable {
     private String id;
     private String name;
     private double year;
-    private ArrayList<Subject> next;
-    private ArrayList<Subject> require;
+    private final ArrayList<Subject> next;
+    private final ArrayList<Subject> require;
 
     public void addNext(Subject s) {
         if(!next.contains(s)) next.add(s);
@@ -19,20 +19,20 @@ public class Subject implements Serializable {
     }
 
     public Subject(String id, String name, String year, Course c) {
-        c.idMap.put(id, this);
+        c.getIdMap().put(id, this);
         this.id = id;
         this.name = name;
-        this.year = Double.valueOf(year);
+        this.year = Double.parseDouble(year); // Str --> double
         this.next = new ArrayList<Subject>();
         this.require = new ArrayList<Subject>();
     }
 
-    public void set(String id, String name, String year, Course c) {
+    public void setUndefined(String id, String name, String year, Course c) {
         // using to set up subject --> that didn't connect
-        c.idMap.put(id, this);
+        c.getIdMap().put(id, this);
         this.id = id;
         this.name = name;
-        this.year = Double.valueOf(year);
+        this.year = Double.parseDouble(year); // Str --> double
     }
 
     public String getId() {
@@ -41,9 +41,7 @@ public class Subject implements Serializable {
     public String getName() {
         return name;
     }
-    public double getYear() {
-        return year;
-    }
+    public double getYear() {return year;}
     public ArrayList<Subject> getNext() {
         return next;
     }

@@ -11,28 +11,29 @@ public class ObjReader {
             c = (Course) in.readObject();
 
         }catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace(); // uncomment this to check Bug!!
         }
 
         return c;
     }
 
     public static void main(String[] args) {
+        CreateObjCourse c = new CreateObjCourse("CPE","D:\\Java66\\JavaFile\\ProjectFilePart\\src\\CSVfile\\Course_CPE.csv");
         Course cpe = ObjReader.readObj("D:\\Java66\\JavaFile\\untitled\\src\\CourseObjFile\\Course_CPE.ser");
         // Using this line to run test -->
-        for(String code : cpe.AllsubCode) {
-            System.out.println("Name: " + cpe.idMap.get(code).getName());
-            System.out.println("id: " + cpe.idMap.get(code).getId());
+        for(String code : cpe.getAllsubCode()) {
+            System.out.println("Name: " + cpe.getIdMap().get(code).getName());
+            System.out.println("id: " + cpe.getIdMap().get(code).getId());
             System.out.print("Require-> ");
-            if(cpe.idMap.get(code).getRequire().isEmpty())
+            if(cpe.getIdMap().get(code).getRequire().isEmpty())
                 System.out.print("null");
-            for(Subject s : cpe.idMap.get(code).getRequire()) {
+            for(Subject s : cpe.getIdMap().get(code).getRequire()) {
                 System.out.print(s.getId()+" ");
             }
             System.out.print("\nNext-> ");
-            if(cpe.idMap.get(code).getNext().isEmpty())
+            if(cpe.getIdMap().get(code).getNext().isEmpty())
                 System.out.print("null");
-            for(Subject s : cpe.idMap.get(code).getNext()) {
+            for(Subject s : cpe.getIdMap().get(code).getNext()) {
                 System.out.print(s.getId()+" ");
             }
             System.out.println("\n");
