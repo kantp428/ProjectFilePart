@@ -116,7 +116,7 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
         });
 
         statusLb.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        statusLb.setText("Status");
+        statusLb.setText("");
 
         fileLb1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         fileLb1.setText("Course: ");
@@ -210,17 +210,20 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String filePath = filePathLb.getText().trim();
 
-        if (filePath.equals("C:\\\\")) {
+        if (nameTextField.getText().equals("Input Course Name")) { // Check if you didn't change name
+            statusLb.setText("Please Input Name");
+            Time.delay(1000, ()->statusLb.setText(""));
+        } else if (filePath.equals("C:\\\\")) {
             statusLb.setText("No Input");
-            Time.delay(1000, ()->statusLb.setText("course Status"));
+            Time.delay(1000, ()->statusLb.setText(""));
 
         } else if (!filePath.toLowerCase().endsWith(".csv")) { // Check if the file path is a CSV file
             statusLb.setText("Not .csv file");
-            Time.delay(1000, ()->statusLb.setText("course Status"));
+            Time.delay(1000, ()->statusLb.setText(""));
 
         } else { // Valid CSV file
             new CreateObjCourse(nameTextField.getText(),filePathLb.getText());
-            Time.delay(1000, ()->statusLb.setText("course Status"));
+            Time.delay(1000, ()->statusLb.setText(""));
         }
     }
 
@@ -228,9 +231,17 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         filePathLb.setText("C:\\\\");
         nameTextField.setText("Input Course Name");
+        statusLb.setText("reset");
+        Time.delay(1000, ()->statusLb.setText(""));
     }
 
     public static void main(String[] args) {
+        // this line make JFileChooser look and feel
+        try{
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+
+        }
         new CourseFileCreatePanel();
     }
 
