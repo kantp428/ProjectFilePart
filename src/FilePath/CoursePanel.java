@@ -25,7 +25,7 @@ public class CoursePanel extends javax.swing.JPanel {
 //            e.printStackTrace();
         }
 
-        File dir = new File("D:\\Java66\\JavaFile\\ProjectFilePart\\src\\CourseObjFile\\");
+        File dir = new File("src/CourseObjFile/");
         String[] courseName = dir.list((dir1, filename) -> filename.endsWith(".ser"));
 
         // remove .ser from file
@@ -140,7 +140,7 @@ public class CoursePanel extends javax.swing.JPanel {
 
     private void selectButtonMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
-        String dir = "D:\\Java66\\JavaFile\\ProjectFilePart\\src\\CourseObjFile\\Course_";
+        String dir = "src/CourseObjFile/Course_";
         String courseName = (String) courseComboBox.getSelectedItem();
         Course course = ObjReader.readObj(dir + courseName + ".ser");
         courseTextArea.setText("");
