@@ -1,7 +1,7 @@
 package Course;
 import java.io.*;
 
-public class ObjReader {
+public class  ObjReader {
 
     public static Course readObj(String filePath) {
         Course c = null;
