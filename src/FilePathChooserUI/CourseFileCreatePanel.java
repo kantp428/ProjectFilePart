@@ -23,9 +23,16 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
      * Creates new form CourseFileCreatePanel
      */
     public CourseFileCreatePanel() {
+        try {
+            // this line make JFileChooser look and feel
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+
+        }
         initComponents();
         fc.setMultiSelectionEnabled(true);
         fc.setCurrentDirectory(new File("C:\\"));
+        // Call this panel to option pane
         JOptionPane.showMessageDialog(null, this, "CourseCreator", JOptionPane.PLAIN_MESSAGE);
     }
 
@@ -89,7 +96,7 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
 
         chooseButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         chooseButton.setText("chooseFile");
-        chooseButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0)));
+        //chooseButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0)));
         chooseButton.setBackground(Color.white);
         chooseButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -98,7 +105,7 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
         });
 
         resetButton.setText("reset");
-        resetButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0)));
+        //resetButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0)));
         resetButton.setBackground(Color.white);
         resetButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -107,7 +114,7 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
         });
 
         createButton.setText("Create courseFile");
-        createButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0)));
+        //createButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0)));
         createButton.setBackground(Color.white);
         createButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -214,7 +221,7 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
             statusLb.setText("Please Input Name");
             Time.delay(1000, ()->statusLb.setText(""));
         } else if (filePath.equals("C:\\\\")) {
-            statusLb.setText("No Input");
+            statusLb.setText("Please Select FilePath");
             Time.delay(1000, ()->statusLb.setText(""));
 
         } else if (!filePath.toLowerCase().endsWith(".csv")) { // Check if the file path is a CSV file
@@ -236,12 +243,6 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
     }
 
     public static void main(String[] args) {
-        // this line make JFileChooser look and feel
-        try{
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-
-        }
         new CourseFileCreatePanel();
     }
 
