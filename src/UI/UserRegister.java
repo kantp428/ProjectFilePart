@@ -289,24 +289,17 @@ public class UserRegister extends javax.swing.JFrame {
             check = false;
         }
         if (check) {
-            AllUser a = null;
-            User newUser = new Student(fullName, lastName, userName, password,userName.replace("b",""),alluser);
+            AllUser a = AllUser.readUserObjFile();
+            new Student(userName,fullName,lastName, password,userName.replace("b",""),a);
+            AllUser.writeUserObjFile(a);
 
-
-//            try {
-//                FileOutputStream f = new FileOutputStream(new File(userLogin));
-//                ObjectOutputStream o = new ObjectOutputStream(f);
-//                o.writeObject(newUser);
-//                o.close();
-//                f.close();
-//                System.out.println("finish");
-//            }catch (FileNotFoundException e) {
-//                System.out.println("File not found");
-//            }catch (IOException e) {
-//                System.out.println("Error initializing stream");
-//            }
+            a = AllUser.readUserObjFile();
+            for(String s : a.getAllkey()) {
+                System.out.println(a.getUserMap().get(s).getFullName());
+            }
         }
     }//GEN-LAST:event_RegisterButtonActionPerformed
+
 
 
     /**

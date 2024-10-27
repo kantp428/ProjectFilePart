@@ -1,5 +1,7 @@
 package AllUser;
 
+import UI.UserRegister;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -19,23 +21,19 @@ public class User implements Serializable {
         allUser.getUserMap().put(userName,this);
     }
 
-//    public static void main(String[] args) {
-//        AllUser a = AllUser.readUserObjFile();
-//        a.getUserMap().put("b6620503578", new Student("b6620503578", "Supakorn", "Leelatanangkul", "123456","123456", a));
-//
-//        if(a==null) {
-//            System.out.println("a is null");
-//        } else {
-//            User u = a.getUserMap().get("b6620503349");
-//            System.out.println(u.fullName);
-//            u = a.getUserMap().get("b6620503578");
-//            System.out.println(u.fullName);
-//        }
-//
-//        b.getUserMap().put("b6620503349", new Student("b6620503349", "Kantapat", "Athan", "123456","123456", b));
-//        System.out.println(b.getUserMap().get("b6620503349").getFullName());
+    public static void main(String[] args) {
+        new UserRegister().setVisible(true);
+//        AllUser a = new AllUser();
+//        a.getUserMap().put("b6620503578",new Student("b6620503578","Supakorn","Leelatanangkul","tek","6620503578",a));
+//        AllUser.writeUserObjFile(a);
+//        AllUser b = AllUser.readUserObjFile();
+//        b.getUserMap().remove("Kantapat");
 //        AllUser.writeUserObjFile(b);
-//    }
+//        for(String i : b.getAllkey()){
+//            System.out.println(b.getUserMap().get(i).fullName);
+//        }
+//        System.out.println(b.getUserMap().get("b6620503578").fullName);
+    }
 
     public String getUserName() {
         return userName;

@@ -17,6 +17,8 @@ public class AllUser implements Serializable{
             ObjectOutputStream out = new ObjectOutputStream(file);
             out.writeObject(alluser);
 
+            System.out.println("Create finish");
+
             out.close();
             file.close();
 
@@ -46,5 +48,10 @@ public class AllUser implements Serializable{
         }
 
         return allUser;
+    }
+
+    public List<String> getAllkey() {
+
+        return new ArrayList<>(userMap.keySet());
     }
 }
