@@ -22,16 +22,11 @@ public class CoursePanel extends javax.swing.JPanel {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
-
+//            e.printStackTrace();
         }
 
         File dir = new File("D:\\Java66\\JavaFile\\ProjectFilePart\\src\\CourseObjFile\\");
-        String[] courseName = dir.list(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String filename) {
-                return filename.endsWith(".ser");
-            }
-        });
+        String[] courseName = dir.list((dir1, filename) -> filename.endsWith(".ser"));
 
         // remove .ser from file
         if (courseName != null) {
@@ -40,8 +35,11 @@ public class CoursePanel extends javax.swing.JPanel {
             }
         }
 
-
-        courseComboBox = new javax.swing.JComboBox<>(courseName);
+        if (courseName != null) {
+            courseComboBox = new javax.swing.JComboBox<>(courseName);
+        } else {
+            courseComboBox = new JComboBox<>();
+        }
         initComponents();
         courseTextArea.setEditable(false); // textArea can't edit
 
@@ -60,11 +58,17 @@ public class CoursePanel extends javax.swing.JPanel {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
+        javax.swing.JScrollPane courseScrollPane;
+        javax.swing.JLabel headerLb;
+        javax.swing.JPanel inPanel;
+        javax.swing.JButton selectButton;
         inPanel = new javax.swing.JPanel();
         courseScrollPane = new javax.swing.JScrollPane();
         courseTextArea = new javax.swing.JTextArea();
         headerLb = new javax.swing.JLabel();
         selectButton = new javax.swing.JButton();
+
+        selectButton.setFocusPainted(false); // make button not focus
 
         setBackground(new java.awt.Color(0, 153, 0));
 
@@ -165,12 +169,8 @@ public class CoursePanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify
-    private javax.swing.JComboBox<String> courseComboBox;
-    private javax.swing.JScrollPane courseScrollPane;
     private javax.swing.JTextArea courseTextArea;
-    private javax.swing.JLabel headerLb;
-    private javax.swing.JPanel inPanel;
-    private javax.swing.JButton selectButton;
+    private final javax.swing.JComboBox<String> courseComboBox;
     // End of variables declaration
 }
 
