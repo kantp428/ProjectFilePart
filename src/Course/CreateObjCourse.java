@@ -65,7 +65,7 @@ public class CreateObjCourse implements Serializable{
     // Create Obj file method -->
     public void createCourseFile(String fName) {
         try {
-            FileOutputStream fileout = new FileOutputStream("D:\\Java66\\JavaFile\\ProjectFilePart\\src\\CourseObjFile\\Course_"+fName+".ser");
+            FileOutputStream fileout = new FileOutputStream("src/CourseObjFile/Course_"+fName+".ser");
             ObjectOutputStream out = new ObjectOutputStream(fileout);
             out.writeObject(course);
             System.out.println("Course Saved");

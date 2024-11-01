@@ -243,6 +243,11 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
     }
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            //
+        }
         new CourseFileCreatePanel();
     }
 
