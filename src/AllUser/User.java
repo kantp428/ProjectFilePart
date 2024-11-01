@@ -23,16 +23,15 @@ public class User implements Serializable {
 
     public static void main(String[] args) {
         new UserRegister().setVisible(true);
-//        AllUser a = new AllUser();
-//        a.getUserMap().put("b6620503578",new Student("b6620503578","Supakorn","Leelatanangkul","tek","6620503578",a));
-//        AllUser.writeUserObjFile(a);
+        AllUser a = AllUser.readUserObjFile();
+
+        a.getUserMap().put("b6620503578",new Student("b6620503578","Supakorn","Leelatanangkul","tek027454184","6620503578",a));
+        AllUser.writeUserObjFile(a);
 //        AllUser b = AllUser.readUserObjFile();
 //        b.getUserMap().remove("Kantapat");
 //        AllUser.writeUserObjFile(b);
-//        for(String i : b.getAllkey()){
-//            System.out.println(b.getUserMap().get(i).fullName);
-//        }
-//        System.out.println(b.getUserMap().get("b6620503578").fullName);
+        System.out.println(a.getUserMap().get("b6620503578").password);
+//        System.out.println(a.getUserMap().get("b6620503578").fullName);
     }
 
     public String getUserName() {
