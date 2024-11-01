@@ -1,7 +1,5 @@
 package AllUser;
 
-import UI.UserRegister;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -10,28 +8,13 @@ public class User implements Serializable {
     private String fullName ;
     private String lastName ;
     private String password ;
-    private String studentID ;
 
-    public User(String userName, String fullName, String lastName, String password, String studentID ,AllUser allUser) {
+    public User(String userName, String fullName, String lastName, String password,AllUser allUser) {
         this.userName = userName;
         this.fullName = fullName;
         this.lastName = lastName;
         this.password = password;
-        this.studentID = studentID;
         allUser.getUserMap().put(userName,this);
-    }
-
-    public static void main(String[] args) {
-        new UserRegister().setVisible(true);
-        AllUser a = AllUser.readUserObjFile();
-
-        a.getUserMap().put("b6620503578",new Student("b6620503578","Supakorn","Leelatanangkul","tek027454184","6620503578",a));
-        AllUser.writeUserObjFile(a);
-//        AllUser b = AllUser.readUserObjFile();
-//        b.getUserMap().remove("Kantapat");
-//        AllUser.writeUserObjFile(b);
-        System.out.println(a.getUserMap().get("b6620503578").password);
-//        System.out.println(a.getUserMap().get("b6620503578").fullName);
     }
 
     public String getUserName() {
@@ -64,13 +47,5 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getStudentID() {
-        return studentID;
-    }
-
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
     }
 }
