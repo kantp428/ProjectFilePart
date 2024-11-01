@@ -140,7 +140,7 @@ public class CoursePanel extends javax.swing.JPanel {
 
     private void selectButtonMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
-        String dir = "D:\\Java66\\JavaFile\\ProjectFilePart\\src\\CourseObjFile\\Course_";
+        String dir = "src/CourseObjFile/Course_";
         String courseName = (String) courseComboBox.getSelectedItem();
         Course course = ObjReader.readObj(dir + courseName + ".ser");
         courseTextArea.setText("");
