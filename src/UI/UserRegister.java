@@ -288,16 +288,16 @@ public class UserRegister extends javax.swing.JFrame {
             ConPassTextField.setText("Password not equal");
             check = false;
         }
-        if (check) {
-            AllUser a = AllUser.readUserObjFile();
-            new Student(userName,fullName,lastName, password,userName.replace("b",""),a);
-            AllUser.writeUserObjFile(a);
-
-            a = AllUser.readUserObjFile();
-            for(String s : a.getAllkey()) {
-                System.out.println(a.getUserMap().get(s).getFullName());
-            }
-        }
+//        if (check) {
+//            AllUser a = AllUser.readUserObjFile();
+//            new Student(userName,fullName,lastName, password,userName.replace("b",""),a);
+//            AllUser.writeUserObjFile(a);
+//
+//            a = AllUser.readUserObjFile();
+//            for(String s : a.getAllkey()) {
+//                System.out.println(a.getUserMap().get(s).getFullName());
+//            }
+//        }
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
 

@@ -9,6 +9,8 @@ package UI;
  * @author Title
  */
 import AllUser.AllUser;
+import AllUser.User;
+import Check.CheckTypeClass;
 import Function.Time;
 
 import java.awt.Color;
@@ -23,6 +25,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.setLocationRelativeTo(null);
 
         addLoginStyle(UsernameTF);
         addLoginStyle(PasswordTF);
@@ -66,7 +69,7 @@ public class Login extends javax.swing.JFrame {
         LeftBackGroundpanel.setPreferredSize(new java.awt.Dimension(400, 500));
         LeftBackGroundpanel.setLayout(null);
 
-        scheduleiconLB.setIcon(new javax.swing.ImageIcon("C:\\Users\\Title\\Documents\\NetBeansProjects\\mavenproject1\\src\\pic\\150x150 schedule.png")); // NOI18N
+        scheduleiconLB.setIcon(new javax.swing.ImageIcon("src/picture/150x150_schedule.png")); // NOI18N
         scheduleiconLB.setText("jLabel1");
         scheduleiconLB.setPreferredSize(new java.awt.Dimension(150, 150));
         LeftBackGroundpanel.add(scheduleiconLB);
@@ -92,7 +95,7 @@ public class Login extends javax.swing.JFrame {
         RightBackGroundpanel.add(LoginLB);
         LoginLB.setBounds(160, 170, 80, 43);
 
-        KuiconLB.setIcon(new javax.swing.ImageIcon("C:\\Users\\Title\\Documents\\NetBeansProjects\\mavenproject1\\src\\pic\\100x100 ku icon no bg.png")); // NOI18N
+        KuiconLB.setIcon(new javax.swing.ImageIcon("src/picture/100x100_ku_icon_no_bg.png")); // NOI18N
         RightBackGroundpanel.add(KuiconLB);
         KuiconLB.setBounds(150, 40, 100, 100);
 
@@ -111,11 +114,11 @@ public class Login extends javax.swing.JFrame {
         RightBackGroundpanel.add(UsernameTF);
         UsernameTF.setBounds(140, 240, 180, 40);
 
-        PassiconLB.setIcon(new javax.swing.ImageIcon("C:\\Users\\Title\\Documents\\NetBeansProjects\\mavenproject1\\src\\pic\\100x100 pass.png")); // NOI18N
+        PassiconLB.setIcon(new javax.swing.ImageIcon("src/picture/100x100_pass.png")); // NOI18N
         RightBackGroundpanel.add(PassiconLB);
         PassiconLB.setBounds(100, 300, 20, 20);
 
-        UsericonLB.setIcon(new javax.swing.ImageIcon("C:\\Users\\Title\\Documents\\NetBeansProjects\\mavenproject1\\src\\pic\\100x100user.png")); // NOI18N
+        UsericonLB.setIcon(new javax.swing.ImageIcon("src/picture/100x100user.png")); // NOI18N
         RightBackGroundpanel.add(UsericonLB);
         UsericonLB.setBounds(100, 250, 20, 20);
 
@@ -230,7 +233,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void SignupButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        UserRegister rgst = new UserRegister();
+        Register rgst = new Register();
         rgst.setVisible(true);
         rgst.pack();
         rgst.setLocationRelativeTo(null);
@@ -243,8 +246,11 @@ public class Login extends javax.swing.JFrame {
         String password = PasswordTF.getText();
         AllUser a = new AllUser();
         a = AllUser.readUserObjFile();
+        for(String i : a.getAllkey()){
+            System.out.println(i);
+        }
         if(password.equals(a.getUserMap().get(username).getPassword())){
-
+            System.out.println(11);
         }else{
             ShowIncorrect.setText("Incorrected");
             Time.delay(2000,()->ShowIncorrect.setText(""));
