@@ -3,9 +3,9 @@ package Tree;
 import java.awt.*;
 
 class Edge {
-    Node source;
-    Node target;
-    boolean active; //track active edge
+    private Node source;
+    private Node target;
+    private boolean active; //track active edge
 
     public Edge(Node source, Node target) {
         this.source = source;
@@ -26,19 +26,36 @@ class Edge {
         g2.setStroke(new BasicStroke(2));
 
         // Calculate the midpoints for the lines
-        int midX = (source.x + target.x) / 2; // X position between source and target
-        int midYSource = source.y + 22; // Center Y position of source node
-        int midYTarget = target.y + 22; // Center Y position of target node
+        int midX = (source.getX() + target.getX()) / 2; // X position between source and target
+        int midYSource = source.getY() + 22; // Center Y position of source node
+        int midYTarget = target.getY() + 22; // Center Y position of target node
 
         // Draw the lines connecting nodes
-        g2.drawLine(source.x + 40, midYSource, midX, midYSource); // Horizontal from source to midX
+        g2.drawLine(source.getX() + 40, midYSource, midX, midYSource); // Horizontal from source to midX
         g2.drawLine(midX, midYSource, midX, midYSource); // Vertical up to the middle of target
         g2.drawLine(midX, midYSource, midX + 40, midYSource); // Horizontal step to target
         g2.drawLine(midX + 40, midYSource, midX + 40, midYTarget); // Vertical down to target Y
-        g2.drawLine(midX + 40, midYTarget, target.x + 40, midYTarget); // Horizontal to target
+        g2.drawLine(midX + 40, midYTarget, target.getX() + 40, midYTarget); // Horizontal to target
     }
 
     public boolean connects(Node node) {
         return source == node || target == node; // Check if the edge connects to the node if not connect one will be null
+    }
+
+    // Getter & Setter
+    public Node getSource() {
+        return source;
+    }
+
+    public Node getTarget() {
+        return target;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
