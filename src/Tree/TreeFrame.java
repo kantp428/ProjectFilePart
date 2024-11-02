@@ -82,8 +82,8 @@ public class TreeFrame extends JFrame {
     public void resetNodeColors() {
         // Reset all nodes to inactive color
         for (Node node : nodes.values()) {
-            node.nodeLabel.setBackground(INACTIVE_COLOR); // Set to low opacity inactive color
-            node.nodeLabel.setForeground(Color.gray); // Set font color for inactive nodes (dark gray)
+            node.nodeLabel.setBackground(ColorMap.INACTIVE_NODE_COLOR);
+            node.nodeLabel.setForeground(ColorMap.INACTIVE_FONT_COLOR);
         }
     }
 
@@ -100,15 +100,15 @@ public class TreeFrame extends JFrame {
         resetEdgeVisibility();
 
         // Highlight clicked node and its connected nodes with normal opacity
-        clickedNode.nodeLabel.setBackground(ACTIVE_COLOR); // Set to active color
-        clickedNode.nodeLabel.setForeground(Color.black); // Change font color to black
+        clickedNode.nodeLabel.setBackground(ColorMap.ACTIVE_NODE_COLOR); // Set to active color
+        clickedNode.nodeLabel.setForeground(ColorMap.ACTIVE_FONT_COLOR); // Change font color to black
 
         for (Edge edge : edges) {
             if (edge.connects(clickedNode)) {
                 // Highlight the connected node
                 Node connectedNode = edge.source == clickedNode ? edge.target : edge.source;
-                connectedNode.nodeLabel.setBackground(ACTIVE_COLOR);
-                connectedNode.nodeLabel.setForeground(Color.black);
+                connectedNode.nodeLabel.setBackground(ColorMap.ACTIVE_NODE_COLOR);
+                connectedNode.nodeLabel.setForeground(ColorMap.ACTIVE_FONT_COLOR);
 
                 // Set the edge as active to change its appearance
                 edge.active = true;
