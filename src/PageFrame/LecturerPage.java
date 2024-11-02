@@ -1,4 +1,6 @@
 package PageFrame;
+import FilePath.CourseFileCreatePanel;
+import FilePath.PathCourseSet;
 import Tree.MapPanel;
 
 import javax.swing.*;
@@ -7,9 +9,21 @@ import java.awt.event.MouseEvent;
 
 public class LecturerPage extends javax.swing.JFrame {
 
-    private CardLayout cardLayout = new CardLayout();
-
     public LecturerPage() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            //
+        }
+
+        String[] courseName = PathCourseSet.getCourseName();
+
+        if (courseName != null) {
+            courseComboBox = new javax.swing.JComboBox<>(courseName);
+        } else {
+            courseComboBox = new JComboBox<>();
+        }
+
         initComponents();
     }
 
@@ -22,18 +36,18 @@ public class LecturerPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        outerPanel = new javax.swing.JPanel();
+        headerPanel = new javax.swing.JPanel();
         usernameLabel = new javax.swing.JLabel();
         Usericon = new javax.swing.JLabel();
         confirmButton = new javax.swing.JButton();
-        courseComboBox = new javax.swing.JComboBox<>();
+        resetButton = new javax.swing.JButton();
         insertFileButton = new javax.swing.JButton();
         centerPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        outerPanel.setBackground(new java.awt.Color(2, 188, 119));
-        outerPanel.setPreferredSize(new java.awt.Dimension(800, 60));
+        headerPanel.setBackground(new java.awt.Color(2, 188, 119));
+        headerPanel.setPreferredSize(new java.awt.Dimension(800, 60));
 
         usernameLabel.setBackground(new java.awt.Color(255, 255, 255));
         usernameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -52,14 +66,10 @@ public class LecturerPage extends javax.swing.JFrame {
             }
         });
 
-        courseComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        courseComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CB1ActionPerformed(evt);
-            }
-        });
+        courseComboBox.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 16));
 
-        insertFileButton.setText("EDIT");
+        insertFileButton.setText("INSERT");
+        insertFileButton.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 16));
         insertFileButton.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
@@ -67,41 +77,53 @@ public class LecturerPage extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(outerPanel);
-        outerPanel.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
+        resetButton.setText("Reset");
+        resetButton.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 18));
+        resetButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                resetButtonMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
+        headerPanel.setLayout(headerPanelLayout);
+        headerPanelLayout.setHorizontalGroup(
+                headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(headerPanelLayout.createSequentialGroup()
                                 .addGap(45, 45, 45)
-                                .addComponent(courseComboBox, 0, 237, Short.MAX_VALUE)
+                                .addComponent(courseComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(insertFileButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                                .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(insertFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                                 .addComponent(Usericon)
                                 .addGap(28, 28, 28)
                                 .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
+        headerPanelLayout.setVerticalGroup(
+                headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(headerPanelLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(Usericon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(headerPanelLayout.createSequentialGroup()
                                                 .addGap(5, 5, 5)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(courseComboBox)
                                                         .addComponent(confirmButton, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                                                        .addComponent(resetButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addComponent(insertFileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(11, 11, 11))
         );
 
-        getContentPane().add(outerPanel, java.awt.BorderLayout.NORTH);
+        getContentPane().add(headerPanel, java.awt.BorderLayout.NORTH);
 
         centerPanel.setLayout(cardLayout);
         // Set default centerPanel
@@ -117,10 +139,11 @@ public class LecturerPage extends javax.swing.JFrame {
 
     private void confirmButtonMouseClicked(java.awt.event.MouseEvent evt) {
         // Clear centerPanel to remove any existing components
-        //centerPanel.removeAll();
+        centerPanel.removeAll();
 
-        // Create the MapPanel dynamically and add it to centerPanel
-        MapPanel mapPanel = new MapPanel("src/CourseObjFile/Course_CPE.ser");
+        String courseName = (String) courseComboBox.getSelectedItem();
+
+        MapPanel mapPanel = new MapPanel(PathCourseSet.getPathOf(courseName));
         centerPanel.add(mapPanel, "mapPanel");
 
         // Show the newly added mapPanel
@@ -132,18 +155,39 @@ public class LecturerPage extends javax.swing.JFrame {
     }
 
     private void insertFileButtonMouseClicked(MouseEvent evt) {
-//        JPanel blankPanel = new JPanel();
-//        blankPanel.setPreferredSize(new Dimension(800, 449));
-//        centerPanel.add(blankPanel, BorderLayout.CENTER);
-//        centerPanel.add(blankPanel);
+        new CourseFileCreatePanel(this);
+    }
+
+    private void resetButtonMouseClicked(MouseEvent evt) {
+        centerPanel.removeAll();
+
+        JPanel blankPanel = new JPanel();
+        blankPanel.setPreferredSize(new Dimension(800, 449));
+        centerPanel.add(blankPanel, BorderLayout.CENTER);
+        centerPanel.add(blankPanel);
 
         cardLayout.show(centerPanel, "blankPanel");
         centerPanel.revalidate();
         centerPanel.repaint();
     }
 
-    private void CB1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    public void updateCourseComboBox() {
+            String[] courseNames = PathCourseSet.getCourseName();
+
+            // Clear existing items from the combo box
+            courseComboBox.removeAllItems();
+
+            // Add each course name to the combo box
+            if (courseNames != null) {
+                for (String courseName : courseNames) {
+                    courseComboBox.addItem(courseName);
+                }
+            }
+
+            // Repaint to make sure the UI is updated
+            courseComboBox.revalidate();
+            courseComboBox.repaint();
+
     }
 
     /**
@@ -162,12 +206,14 @@ public class LecturerPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
+    private final CardLayout cardLayout = new CardLayout();
     private javax.swing.JComboBox<String> courseComboBox;
     private javax.swing.JButton confirmButton;
+    private javax.swing.JButton resetButton;
     private javax.swing.JLabel Usericon;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JButton insertFileButton;
-    private javax.swing.JPanel outerPanel;
+    private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel centerPanel;
     // End of variables declaration
 }
