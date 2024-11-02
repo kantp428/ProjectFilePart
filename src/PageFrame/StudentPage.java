@@ -1,4 +1,5 @@
 package PageFrame;
+import AllUser.User;
 import FilePath.PathCourseSet;
 import Tree.MapPanel;
 
@@ -8,7 +9,10 @@ import java.awt.event.MouseEvent;
 
 public class StudentPage extends JFrame {
 
-    public StudentPage() {
+    public StudentPage(User user) {
+        this.setTitle("Student -->");
+        this.user = user;
+        this.fullName = user.getFullName()+" "+user.getLastName();
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
@@ -52,6 +56,7 @@ public class StudentPage extends JFrame {
         usernameLabel.setForeground(new Color(255, 255, 255));
         usernameLabel.setText("Username");
         usernameLabel.setPreferredSize(new Dimension(100, 30));
+        usernameLabel.setText(fullName);
 
         Usericon.setIcon(new ImageIcon("src/Image/userImage.jpg")); // NOI18N
         Usericon.setToolTipText("");
@@ -121,7 +126,6 @@ public class StudentPage extends JFrame {
         centerPanel.add(blankPanel, "blankPanel");
 
         getContentPane().add(centerPanel, BorderLayout.CENTER);
-
         pack();
     }// </editor-fold>
 
@@ -177,17 +181,17 @@ public class StudentPage extends JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            //
-        }
-
-        JFrame mainFrame = new StudentPage();
-        mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        mainFrame.setVisible(true);
-    }
+//    public static void main(String args[]) {
+//        try {
+//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//        } catch (Exception e) {
+//            //
+//        }
+//
+//        JFrame mainFrame = new StudentPage();
+//        mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        mainFrame.setVisible(true);
+//    }
 
     // Variables declaration - do not modify
     private final CardLayout cardLayout = new CardLayout();
@@ -198,5 +202,7 @@ public class StudentPage extends JFrame {
     private JLabel usernameLabel;
     private JPanel headerPanel;
     private JPanel centerPanel;
+    private User user;
+    private String fullName;
     // End of variables declaration
 }

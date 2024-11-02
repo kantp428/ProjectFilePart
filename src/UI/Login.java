@@ -12,6 +12,8 @@ import AllUser.AllUser;
 import AllUser.User;
 import Check.CheckTypeClass;
 import Function.Time;
+import PageFrame.LecturerPage;
+import PageFrame.StudentPage;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -256,9 +258,21 @@ public class Login extends javax.swing.JFrame {
         if (haveUser){
             if(password.equals(a.getUserMap().get(username).getPassword())){
                 if(username.contains("b")){
-                    System.out.println("This is student");
+                    User student = a.getUserMap().get(username);
+                    StudentPage stp = new StudentPage(student);
+                    stp.setVisible(true);
+                    stp.pack();
+                    stp.setLocationRelativeTo(null);
+                    stp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    this.dispose();
                 }else if(username.contains("a")){
-                    System.out.println("This is lecturer");
+                    User lecturer = a.getUserMap().get(username);
+                    LecturerPage ltp = new LecturerPage(a.getUserMap().get(username));
+                    ltp.setVisible(true);
+                    ltp.pack();
+                    ltp.setLocationRelativeTo(null);
+                    ltp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    this.dispose();
                 }
             }else{
                 ShowIncorrect.setText("Incorrected");
