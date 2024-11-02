@@ -10,8 +10,10 @@ public class MapPanel extends JPanel {
     Map<String, Node> nodes = new HashMap<>();
     List<Edge> edges = new ArrayList<>();
     JPanel drawingPanel;
+    String filePath;
 
-    public MapPanel() {
+    public MapPanel(String filePath) {
+        this.filePath = filePath;
         setLayout(new BorderLayout());
 
         // Create a custom panel to draw edges and nodes
@@ -66,11 +68,11 @@ public class MapPanel extends JPanel {
         }
         }
 
-        Course c = ObjReader.readObj("src/CourseObjFile/Course_CPE.ser");
+        Course c = ObjReader.readObj(filePath);
         for(String i : c.getAllsubCode()){
             Subject s = c.getIdMap().get(i);
             if(s.getYear() == year+0.5){
-                System.out.println("xxxxxxxxxx "+year+" xxxxxxxxxx");
+                //System.out.println("xxxxxxxxxx "+year+" xxxxxxxxxx");
                 year+=0.5;
                 x += 200;
                 y = 100;
