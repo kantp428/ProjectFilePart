@@ -242,18 +242,33 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void LoginButtonMouseClicked(java.awt.event.MouseEvent evt) {
+        boolean haveUser = false;
         String username = UsernameTF.getText();
         String password = PasswordTF.getText();
         AllUser a = new AllUser();
         a = AllUser.readUserObjFile();
         for(String i : a.getAllkey()){
-            System.out.println(i);
+            if(username.equals(i)){
+                haveUser = true;
+                break;
+            }
         }
-        if(password.equals(a.getUserMap().get(username).getPassword())){
-            System.out.println(11);
+        if (haveUser){
+            if(password.equals(a.getUserMap().get(username).getPassword())){
+                System.out.println(11);
+            }else{
+                ShowIncorrect.setText("Incorrected");
+                Time.delay(2000,()->ShowIncorrect.setText(""));
+            }
         }else{
-            ShowIncorrect.setText("Incorrected");
+            ShowIncorrect.setText("User not found");
             Time.delay(2000,()->ShowIncorrect.setText(""));
+            Register rgst = new Register();
+            rgst.setVisible(true);
+            rgst.pack();
+            rgst.setLocationRelativeTo(null);
+            rgst.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
         }
     }
 

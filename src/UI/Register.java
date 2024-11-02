@@ -8,6 +8,10 @@ package UI;
  *
  * @author Title
  */
+import AllUser.AllUser;
+import AllUser.User;
+import AllUser.Student;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.FocusEvent;
@@ -26,6 +30,7 @@ public class Register extends javax.swing.JFrame {
             //e.printStackTrace();
         }
         initComponents();
+        addClearOnFocusListener(UsernameTF,"Have user already");
         addClearOnFocusListener(UsernameTF, "Start with 'b' followed by your student ID");
         addClearOnFocusListener(PasswordTF, "1 Bigletter and 3 Smallletter");
         addClearOnFocusListener(PasswordTF, "Password not equal");
@@ -86,7 +91,7 @@ public class Register extends javax.swing.JFrame {
         jPanel2.add(RegistertxtLB1);
         RegistertxtLB1.setBounds(150, 320, 150, 30);
 
-        RegistericonLB.setIcon(new javax.swing.ImageIcon("C:\\Users\\Title\\Documents\\NetBeansProjects\\mavenproject1\\src\\pic\\JobApp_preview.png")); // NOI18N
+        RegistericonLB.setIcon(new javax.swing.ImageIcon("src/picture/JobApp_preview.png")); // NOI18N
         jPanel2.add(RegistericonLB);
         RegistericonLB.setBounds(-10, 30, 430, 350);
 
@@ -202,6 +207,7 @@ public class Register extends javax.swing.JFrame {
 
     private void ConfirmMouseClicked(java.awt.event.MouseEvent evt) {
         boolean check = true ;
+        AllUser a = AllUser.readUserObjFile();
         String fullName = FirstNameTF.getText();
         String surName = SureNameTF.getText();
         String userName = UsernameTF.getText();
@@ -209,7 +215,14 @@ public class Register extends javax.swing.JFrame {
         String conPass = confirmPassTF.getText();
         int countBigLetter = 0;
         int countSmallLetter = 0;
-        if(!userName.contains("b") || userName.length() != 11) {
+        for(String i : a.getAllkey()){
+            if(userName.equals(i)){
+                System.out.println(i);
+                UsernameTF.setText("Have user already");
+                check = false;
+            }
+        }
+        if(!userName.contains("b") || userName.length() != 11 && check) {
             UsernameTF.setText("Start with 'b' followed by your student ID");
             check = false;
         }
@@ -220,12 +233,24 @@ public class Register extends javax.swing.JFrame {
                 countSmallLetter ++;
             }
         }
-        if (countBigLetter < 1 && countSmallLetter < 2) {
+        if (countBigLetter < 1 && countSmallLetter < 2 && check) {
             PasswordTF.setText("1 Bigletter and 3 Smallletter");
+            check = false;
         }
-        if (!(password.equals(conPass))) {
+        if (!(password.equals(conPass)) && check) {
             PasswordTF.setText("Password not equal");
             check = false;
+        }
+        if(check){
+            System.out.println("11");
+            User newUser = new Student(userName,fullName,surName,password,a);
+            AllUser.writeUserObjFile(a);
+            Login login = new Login();
+            login.setVisible(true);
+            login.pack();
+            login.setLocationRelativeTo(null);
+            login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
         }
     }
 
