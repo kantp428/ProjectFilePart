@@ -14,8 +14,8 @@ public class MainRun {
         mainframe.setTitle("Frame");
         mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        TreePanel treePanel = new TreePanel();
-        mainframe.add(treePanel);
+        MapPanel mapPanel = new MapPanel();
+        mainframe.add(mapPanel);
         mainframe.setVisible(true);
     }
 }
