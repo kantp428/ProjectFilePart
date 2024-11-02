@@ -9,13 +9,13 @@ import java.util.List;
 public class MapPanel extends JPanel {
     Map<String, Node> nodes = new HashMap<>();
     List<Edge> edges = new ArrayList<>();
-
+    JPanel drawingPanel;
 
     public MapPanel() {
         setLayout(new BorderLayout());
 
         // Create a custom panel to draw edges and nodes
-        JPanel drawingPanel = new JPanel() {
+        drawingPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -24,7 +24,7 @@ public class MapPanel extends JPanel {
         };
 
         drawingPanel.setLayout(null);
-        drawingPanel.setPreferredSize(new Dimension(1200, 800)); // Set preferred size for scrolling
+        drawingPanel.setPreferredSize(new Dimension(1920, 1280)); // Set preferred size for scrolling
 
         // Create nodes and edges
         createNodes();
@@ -36,7 +36,7 @@ public class MapPanel extends JPanel {
 
         // Wrap the drawing panel in a JScrollPane
         JScrollPane scrollPane = new JScrollPane(drawingPanel);
-        scrollPane.setPreferredSize(new Dimension(200, 600)); // Set the size of the scroll pane
+        scrollPane.setPreferredSize(new Dimension(1920, 1280)); // Set the size of the scroll pane
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
@@ -48,6 +48,24 @@ public class MapPanel extends JPanel {
         double year = 1;
         int x = 100;
         int y = 100;
+        int w = 100;
+        int t = 1;
+
+        for(int i=1;i<5;i++){
+        for(int j=1;j<3;j++){
+            if(t>2) t=1;
+            JLabel label = new JLabel("<html>Year<br>"+i+":"+t+"</html>", SwingConstants.CENTER);
+            label.setEnabled(false);
+            label.setOpaque(false);
+            label.setHorizontalAlignment(SwingConstants.CENTER); // Center horizontally
+            label.setVerticalAlignment(SwingConstants.CENTER); // Center vertically
+            label.setBounds(w, 20, 100, 60);
+            w+=200;
+            t++;
+            drawingPanel.add(label);
+        }
+        }
+
         Course c = ObjReader.readObj("src/CourseObjFile/Course_CPE.ser");
         for(String i : c.getAllsubCode()){
             Subject s = c.getIdMap().get(i);
