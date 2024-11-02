@@ -25,16 +25,6 @@ public class CoursePanel extends javax.swing.JPanel {
 //            e.printStackTrace();
         }
 
-//        File dir = new File("src/CourseObjFile/");
-//        String[] courseName = dir.list((dir1, filename) -> filename.endsWith(".ser"));
-//
-//        // remove .ser from file
-//        if (courseName != null) {
-//            for (int i = 0; i < courseName.length; i++) {
-//                courseName[i] = courseName[i].replaceFirst("\\.ser$", "").replaceFirst("Course_", "");
-//            }
-//        }
-
         String[] courseName = PathCourseSet.getCourseName();
 
         if (courseName != null) {

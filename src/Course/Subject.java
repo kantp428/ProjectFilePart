@@ -22,7 +22,11 @@ public class Subject implements Serializable {
         c.getIdMap().put(id, this);
         this.id = id;
         this.name = name;
-        this.year = Double.parseDouble(year); // Str --> double
+        if (year.equals("undefined")) {
+            this.year = 0;
+        } else {
+            this.year = Double.parseDouble(year); // Str --> double
+        }
         this.next = new ArrayList<Subject>();
         this.require = new ArrayList<Subject>();
     }
