@@ -21,9 +21,12 @@ public class CreateObjCourse implements Serializable{
                 // Main subject code -->
                 String id = row[0];
                 String name = row[1];
+//                System.out.println(name);
                 String year = row[4];
                 Subject s;
-                course.getAllsubCode().add(id);
+
+                if(!course.getAllsubCode().contains(id)) {course.getAllsubCode().add(id);}
+
                 if(!course.getIdMap().containsKey(id)) {
                     s = new Subject(id, name, year, course);
                     course.getIdMap().put(id, s); // add subject to id map
@@ -39,6 +42,7 @@ public class CreateObjCourse implements Serializable{
                         if(course.getIdMap().get(req) == null) { //req isn't already exist
                             // Create req subject!!
                             Subject undefinedSub = new Subject(req, "undefined", "undefined", course);
+
                             course.getIdMap().put(req, undefinedSub);
                         }
                         s.addReq(course.getIdMap().get(req));
@@ -73,5 +77,9 @@ public class CreateObjCourse implements Serializable{
 //            e.printStackTrace(); // uncomment this to check Bug!!
         }
     }
+
+//    public static void main(String[] args) {
+//        new CreateObjCourse("ME", "src/CSVfileTest/Course_ME.csv");
+//    }
 
 }

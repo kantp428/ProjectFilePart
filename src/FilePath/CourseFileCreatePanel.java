@@ -232,7 +232,9 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
 
         } else { // Valid CSV file
             new CreateObjCourse(nameTextField.getText(),filePathLb.getText());
-            lecturerPage.updateCourseComboBox();
+            if (lecturerPage != null) {
+                lecturerPage.updateCourseComboBox();
+            }
             statusLb.setText("Updated Course");
             Time.delay(1000, ()->statusLb.setText(""));
         }
@@ -247,6 +249,11 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
     }
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            //
+        }
         new CourseFileCreatePanel(null);
     }
 

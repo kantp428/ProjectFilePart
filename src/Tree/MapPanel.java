@@ -74,6 +74,7 @@ public class MapPanel extends JPanel {
         Course c = ObjReader.readObj(filePath);
         for(String i : c.getAllsubCode()){
             Subject s = c.getIdMap().get(i);
+            if (s.getYear() == 0) continue;
             if(s.getYear() == year+0.5){
                 //System.out.println("xxxxxxxxxx "+year+" xxxxxxxxxx");
                 year+=0.5;
@@ -85,6 +86,7 @@ public class MapPanel extends JPanel {
         }
         for (String i : c.getAllsubCode()){
             Subject s = c.getIdMap().get(i);
+            if (s.getYear() == 0) continue;
             for(Subject sub : s.getNext()){
                 edges.add(new Edge(nodes.get(i), nodes.get(sub.getId())));
             }
