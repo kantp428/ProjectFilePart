@@ -32,7 +32,23 @@ class Edge {
         int midYTarget = target.getY() + 30; // Center Y position of target node
         int midxsource = source.getX()+50;
 
+        //On Hand One
+//        g2.drawLine(source.getX()+50,source.getY(),source.getX()+50,source.getY()-20);
+//        g2.drawLine(source.getX()+50,source.getY()-20,source.getX()+150,source.getY()-20);
+//        if(target.getY()<source.getY()){
+//            g2.drawLine(source.getX()+150,source.getY()-20,source.getX()+150,target.getY()+30);
+//            g2.drawLine(source.getX()+150,target.getY()+30,target.getX(),target.getY()+30);
+//        }
+//        else if(target.getY()>source.getY()){
+//            g2.drawLine(source.getX()+150,source.getY()-20,source.getX()+150,target.getY()+30);
+//            g2.drawLine(source.getX()+150,target.getY()+30,target.getX(),target.getY()+30);
+//
+//        }else {
+//            g2.drawLine(source.getX()+150,source.getY()-20,target.getX()+50,target.getY()-20);
+//            g2.drawLine(target.getX()+50,target.getY()-20,target.getX()+50,target.getY());
+//        }
 
+        //On hand Two
         g2.drawLine(source.getX()+50,source.getY(),source.getX()+50,source.getY()-20);
         g2.drawLine(source.getX()+50,source.getY()-20,source.getX()+150,source.getY()-20);
         g2.drawLine(source.getX()+150,source.getY()-20,source.getX()+150,target.getY()-20);
