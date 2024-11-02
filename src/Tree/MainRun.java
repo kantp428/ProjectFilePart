@@ -10,7 +10,7 @@ public class MainRun {
             //
         }
         JFrame mainframe = new JFrame();
-        mainframe.setSize(800, 600);
+        mainframe.setSize(1280, 720);
         mainframe.setTitle("Frame");
         mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
