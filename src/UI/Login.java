@@ -15,8 +15,8 @@ import Function.Time;
 
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
+import java.awt.event.ActionEvent;
+import javax.swing.*;
 
 public class Login extends javax.swing.JFrame {
 
@@ -255,20 +255,36 @@ public class Login extends javax.swing.JFrame {
         }
         if (haveUser){
             if(password.equals(a.getUserMap().get(username).getPassword())){
-                System.out.println(11);
+                if(username.contains("b")){
+                    System.out.println("This is student");
+                }else if(username.contains("a")){
+                    System.out.println("This is lecturer");
+                }
             }else{
                 ShowIncorrect.setText("Incorrected");
                 Time.delay(2000,()->ShowIncorrect.setText(""));
             }
         }else{
-            ShowIncorrect.setText("User not found");
-            Time.delay(2000,()->ShowIncorrect.setText(""));
-            Register rgst = new Register();
-            rgst.setVisible(true);
-            rgst.pack();
-            rgst.setLocationRelativeTo(null);
-            rgst.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.dispose();
+            int answer = JOptionPane.showConfirmDialog(null, "Do you want to create an account?", "User not found", JOptionPane.YES_NO_OPTION);
+            if (answer == JOptionPane.YES_OPTION) {
+                Register rgst = new Register();
+                rgst.setVisible(true);
+                rgst.pack();
+                rgst.setLocationRelativeTo(null);
+                rgst.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+                // Dispose the current Login JFrame
+                dispose();
+            } else {
+                System.exit(0);
+            }
+//            Time.delay(2000,()->ShowIncorrect.setText(""));
+//            Register rgst = new Register();
+//            rgst.setVisible(true);
+//            rgst.pack();
+//            rgst.setLocationRelativeTo(null);
+//            rgst.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//            this.dispose();
         }
     }
 
