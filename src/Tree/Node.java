@@ -1,6 +1,7 @@
 package Tree;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -43,7 +44,7 @@ public class Node {
             @Override
             public void mouseClicked(MouseEvent e) {
                 System.out.println("Node clicked: " + id);
-                treeFrame.activateConnectedNodes(Node.this); // Activate clicked node and its connections
+                treeFrame.activateConnectedNodes(Node.this); // Activate clicked node and its connections , Using cuter class (Node)
                 treeFrame.repaint(); // Repaint the main application to reflect changes
             }
         });
