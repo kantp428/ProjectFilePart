@@ -6,6 +6,7 @@ package FilePath;
 
 import Course.CreateObjCourse;
 import Function.Time;
+import PageFrame.LecturerPage;
 
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -22,7 +23,8 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
     /**
      * Creates new form CourseFileCreatePanel
      */
-    public CourseFileCreatePanel() {
+    public CourseFileCreatePanel(LecturerPage lecturerPage) {
+        this.lecturerPage = lecturerPage;
         try {
             // this line make JFileChooser look and feel
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -80,7 +82,7 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
             }
         });
 
-        setBackground(new java.awt.Color(153, 255, 153));
+        setBackground(new java.awt.Color(2, 188, 119));
 
         insidePanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -230,6 +232,8 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
 
         } else { // Valid CSV file
             new CreateObjCourse(nameTextField.getText(),filePathLb.getText());
+            lecturerPage.updateCourseComboBox();
+            statusLb.setText("Updated Course");
             Time.delay(1000, ()->statusLb.setText(""));
         }
     }
@@ -243,15 +247,11 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
     }
 
     public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            //
-        }
-        new CourseFileCreatePanel();
+        new CourseFileCreatePanel(null);
     }
 
     private final JFileChooser fc = new JFileChooser();
+    private final LecturerPage lecturerPage;
     // Variables declaration - do not modify
     private javax.swing.JTextField nameTextField;
     private javax.swing.JLabel filePathLb;
