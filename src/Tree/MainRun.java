@@ -1,6 +1,7 @@
 package Tree;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainRun {
     public static void main(String[] args) {
@@ -16,6 +17,7 @@ public class MainRun {
 
         MapPanel mapPanel = new MapPanel("src/CourseObjFile/Course_CPE.ser");
         mainframe.add(mapPanel);
+        mainframe.setExtendedState(Frame.MAXIMIZED_BOTH);
         mainframe.setVisible(true);
     }
 }
