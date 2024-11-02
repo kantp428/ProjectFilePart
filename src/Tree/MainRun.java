@@ -14,7 +14,7 @@ public class MainRun {
         mainframe.setTitle("Frame");
         mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        MapPanel mapPanel = new MapPanel();
+        MapPanel mapPanel = new MapPanel("src/CourseObjFile/Course_CPE.ser");
         mainframe.add(mapPanel);
         mainframe.setVisible(true);
     }
