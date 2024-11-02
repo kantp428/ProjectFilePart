@@ -26,7 +26,7 @@ class Edge {
         g2.setStroke(new BasicStroke(2));
 
         // Calculate the midpoints for the lines
-        int midX = (source.getX() + target.getX()) / 2; // X position between source and target
+        int midX = (source.getX() + target.getX() + 200) / 2; // set Vertical Line position
         int midYSource = source.getY() + 22; // Center Y position of source node
         int midYTarget = target.getY() + 22; // Center Y position of target node
 

@@ -11,7 +11,7 @@ public class MapPanel extends JPanel {
     List<Edge> edges = new ArrayList<>();
 
 
-    public MapPanel() {
+    public MapPanel(String filePath) {
         setLayout(new BorderLayout());
 
         // Create a custom panel to draw edges and nodes
@@ -24,10 +24,10 @@ public class MapPanel extends JPanel {
         };
 
         drawingPanel.setLayout(null);
-        drawingPanel.setPreferredSize(new Dimension(1200, 800)); // Set preferred size for scrolling
+        drawingPanel.setPreferredSize(new Dimension(2000, 1100)); // Set preferred size for scrolling
 
         // Create nodes and edges
-        createNodes();
+        createNodes(filePath);
 
         // Add nodes to the drawing panel
         for (Node node : nodes.values()) {
@@ -44,15 +44,15 @@ public class MapPanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
     }
 
-    private void createNodes() {
+    private void createNodes(String filePath) {
         double year = 1;
         int x = 100;
         int y = 100;
-        Course c = ObjReader.readObj("src/CourseObjFile/Course_CPE.ser");
+        Course c = ObjReader.readObj(filePath);
         for(String i : c.getAllsubCode()){
             Subject s = c.getIdMap().get(i);
             if(s.getYear() == year+0.5){
-                System.out.println("xxxxxxxxxx "+year+" xxxxxxxxxx");
+                //System.out.println("xxxxxxxxxx "+year+" xxxxxxxxxx");
                 year+=0.5;
                 x += 200;
                 y = 100;
