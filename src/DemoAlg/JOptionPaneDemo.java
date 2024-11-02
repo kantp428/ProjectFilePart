@@ -1,4 +1,4 @@
-package Demo;
+package DemoAlg;
 
 import javax.swing.*;
 import java.awt.*;
