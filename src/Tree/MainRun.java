@@ -1,0 +1,21 @@
+package Tree;
+
+import javax.swing.*;
+
+public class MainRun {
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            //
+        }
+        JFrame mainframe = new JFrame();
+        mainframe.setSize(800, 600);
+        mainframe.setTitle("Frame");
+        mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        TreePanel treePanel = new TreePanel();
+        mainframe.add(treePanel);
+        mainframe.setVisible(true);
+    }
+}

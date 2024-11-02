@@ -1,7 +1,6 @@
 package Tree;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -9,13 +8,13 @@ public class Node {
     String id;
     int x, y;
     JLabel nodeLabel;
-    TreeFrame treeFrame; // Reference to MainApp instance
+    TreePanel mapPanel; // Reference to MainApp instance
 
-    public Node(String id, int x, int y, TreeFrame treeFrame) {
+    public Node(String id, int x, int y, TreePanel mapPanel) {
         this.id = id;
         this.x = x;
         this.y = y;
-        this.treeFrame = treeFrame; // Store reference
+        this.mapPanel = mapPanel; // Store reference
 
         // Define a label for the node with a colored background
         nodeLabel = new JLabel(id, SwingConstants.CENTER) {
@@ -31,7 +30,7 @@ public class Node {
         };
 
         // Set inactive Node component
-        nodeLabel.setOpaque(false); // if it's true swing will paint background automatically
+        nodeLabel.setOpaque(false);
         nodeLabel.setBorder(BorderFactory.createEmptyBorder()); // No border for inactive nodes
         nodeLabel.setBounds(x, y, 80, 45);
 
@@ -44,8 +43,8 @@ public class Node {
             @Override
             public void mouseClicked(MouseEvent e) {
                 System.out.println("Node clicked: " + id);
-                treeFrame.activateConnectedNodes(Node.this); // Activate clicked node and its connections , Using cuter class (Node)
-                treeFrame.repaint(); // Repaint the main application to reflect changes
+                mapPanel.activateConnectedNodes(Node.this); // Activate clicked node and its connections , Using cuter class (Node)
+                mapPanel.repaint(); // Repaint the main application to reflect changes
             }
         });
     }
