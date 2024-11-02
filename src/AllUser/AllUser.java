@@ -21,7 +21,7 @@ public class AllUser implements Serializable{
 
             out.close();
             file.close();
-
+            //
         }catch (FileNotFoundException e){
             System.out.println("File not found");
         }catch (IOException e){
