@@ -1,4 +1,4 @@
-package Demo;
+package DemoAlg;
 
 import  java.util.*;
 import java.io.*;
