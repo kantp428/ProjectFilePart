@@ -120,13 +120,19 @@ public class MapPanel extends JPanel {
         resetEdgeVisibility();
 
         // Highlight clicked node and its connected nodes with normal opacity
-        clickedNode.setActive();
+        clickedNode.setClickedActive();
 
         for (Edge edge : edges) {
             if (edge.connects(clickedNode)) {
                 // Highlight the connected node
                 Node connectedNode = edge.getSource() == clickedNode ? edge.getTarget() : edge.getSource();
-                connectedNode.setActive();
+
+                if (connectedNode == edge.getSource()) {
+                    connectedNode.setSourceActive();
+                } else if (connectedNode == edge.getTarget()) {
+                    connectedNode.setTargetActive();
+                }
+                //connectedNode.setActive();
 
                 // Set the edge as active to change its appearance
                 edge.setActive(true);

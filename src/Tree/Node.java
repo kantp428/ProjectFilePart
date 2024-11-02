@@ -42,14 +42,28 @@ public class Node {
     }
 
 
-    public void setActive() {
+    public void setClickedActive() {
         nodeLabel.setForeground(ColorMap.ACTIVE_FONT_COLOR);
         nodeLabel.setBackground(ColorMap.ACTIVE_NODE_COLOR);
+        nodeLabel.setBorder(BorderFactory.createLineBorder(ColorMap.BORDER_ACTIVE_NODE_COLOR, 2));
     }
 
     public void setInActive() {
         nodeLabel.setForeground(ColorMap.INACTIVE_FONT_COLOR);
         nodeLabel.setBackground(ColorMap.INACTIVE_NODE_COLOR);
+        nodeLabel.setBorder(BorderFactory.createEmptyBorder());
+    }
+
+    public void setSourceActive() {
+        nodeLabel.setForeground(ColorMap.ACTIVE_FONT_COLOR);
+        nodeLabel.setBackground(ColorMap.ACTIVE_SOURCE_NODE_COLOR);
+        nodeLabel.setBorder(BorderFactory.createEmptyBorder());
+    }
+
+    public void setTargetActive() {
+        nodeLabel.setForeground(ColorMap.ACTIVE_FONT_COLOR);
+        nodeLabel.setBackground(ColorMap.ACTIVE_TARGET_NODE_COLOR);
+        nodeLabel.setBorder(BorderFactory.createEmptyBorder());
     }
 
     // Getter
