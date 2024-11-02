@@ -56,7 +56,10 @@ public class MapPanel extends JPanel {
         for(int i=1;i<5;i++){
         for(int j=1;j<3;j++){
             if(t>2) t=1;
-            JLabel label = new JLabel("<html>Year<br>"+i+":"+t+"</html>", SwingConstants.CENTER);
+            //JLabel label = new JLabel("<html>Year<br>"+i+":"+t+"</html>", SwingConstants.CENTER);
+            JLabel label = new JLabel("<html><div style='text-align: center;'>Year<br>" + i + ":" + t + "</div></html>", SwingConstants.CENTER);
+
+            label.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
             label.setEnabled(false);
             label.setOpaque(false);
             label.setHorizontalAlignment(SwingConstants.CENTER); // Center horizontally
