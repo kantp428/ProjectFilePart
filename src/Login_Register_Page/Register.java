@@ -22,12 +22,8 @@ public class Register extends javax.swing.JFrame {
      * Creates new form Register
      */
     public Register() {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            //e.printStackTrace();
-        }
         initComponents();
+        this.setResizable(false);
         addClearOnFocusListener(UsernameTF,"Have user already");
         addClearOnFocusListener(UsernameTF, "Start with 'b' followed by your student ID");
         addClearOnFocusListener(PasswordTF, "1 Bigletter and 3 Smallletter");
@@ -142,6 +138,7 @@ public class Register extends javax.swing.JFrame {
         jPanel3.add(UsernameTF);
         UsernameTF.setBounds(180, 200, 180, 40);
 
+        BackBT.setFocusPainted(false);
         BackBT.setText("Back");
         BackBT.setActionCommand("");
         BackBT.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -152,6 +149,7 @@ public class Register extends javax.swing.JFrame {
         jPanel3.add(BackBT);
         BackBT.setBounds(20, 410, 72, 23);
 
+        Confirm.setFocusPainted(false);
         Confirm.setText("Confirm");
         Confirm.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -173,6 +171,8 @@ public class Register extends javax.swing.JFrame {
         jPanel3.add(PasswordTF);
         PasswordTF.setBounds(180, 270, 180, 40);
 
+        ShowPassCB.setOpaque(false);
+        ShowPassCB.setFocusPainted(false);
         ShowPassCB.setText("Show Password");
         ShowPassCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,7 +267,9 @@ public class Register extends javax.swing.JFrame {
         if(ShowPassCB.isSelected()){
             PasswordTF.setEchoChar((char)0);
         }else{
-            PasswordTF.setEchoChar('*');
+            if(!PasswordTF.getText().equals("Password")) {
+                PasswordTF.setEchoChar('●');
+            }
         }
     }
 
