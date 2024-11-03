@@ -28,6 +28,10 @@ public class Register extends javax.swing.JFrame {
         addClearOnFocusListener(UsernameTF, "Start with 'b' followed by your student ID");
         addClearOnFocusListener(PasswordTF, "1 Bigletter and 3 Smallletter");
         addClearOnFocusListener(PasswordTF, "Password not equal");
+        pack();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
     /**
@@ -157,7 +161,7 @@ public class Register extends javax.swing.JFrame {
             }
         });
         jPanel3.add(Confirm);
-        Confirm.setBounds(290, 410, 74, 23);
+        Confirm.setBounds(290, 410, 80, 23);
 
         confirmPassTF.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         confirmPassTF.setPreferredSize(new java.awt.Dimension(180, 40));
@@ -204,23 +208,26 @@ public class Register extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void ConfirmMouseClicked(java.awt.event.MouseEvent evt) {
-        boolean check = true ;
-        AllUser a = AllUser.readUserObjFile();
         String fullName = FirstNameTF.getText();
         String surName = SureNameTF.getText();
-        String userName = UsernameTF.getText();
+        String username = UsernameTF.getText();
         String password = PasswordTF.getText();
         String conPass = confirmPassTF.getText();
-        int countBigLetter = 0;
-        int countSmallLetter = 0;
-        for(String i : a.getAllkey()){
-            if(userName.equals(i)){
-                System.out.println(i);
-                UsernameTF.setText("Have user already");
-                check = false;
+        AllUser a = new AllUser();
+        boolean check = true ;
+        if((AllUser.readUserObjFile())!=null){
+            a = AllUser.readUserObjFile();
+            for(String i : a.getAllkey()){
+                if(username.equals(i)){
+                    System.out.println(i);
+                    UsernameTF.setText("Have user already");
+                    check = false;
+                }
             }
         }
-        if(!userName.contains("b") || userName.length() != 11 && check) {
+        int countBigLetter = 0;
+        int countSmallLetter = 0;
+        if(!username.contains("b") || username.length() != 11 && check) {
             UsernameTF.setText("Start with 'b' followed by your student ID");
             check = false;
         }
@@ -232,8 +239,8 @@ public class Register extends javax.swing.JFrame {
             }
         }
         if (countBigLetter < 1 && countSmallLetter < 2 && check) {
-            PasswordTF.setText("1 Bigletter and 3 Smallletter");
-            check = false;
+                PasswordTF.setText("1 Bigletter and 3 Smallletter");
+                check = false;
         }
         if (!(password.equals(conPass)) && check) {
             PasswordTF.setText("Password not equal");
@@ -241,23 +248,15 @@ public class Register extends javax.swing.JFrame {
         }
         if(check){
             System.out.println("11");
-            User newUser = new Student(userName,fullName,surName,password,a);
+            User newUser = new Student(username,fullName,surName,password,a);
             AllUser.writeUserObjFile(a);
-            Login login = new Login();
-            login.setVisible(true);
-            login.pack();
-            login.setLocationRelativeTo(null);
-            login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            new Login();
             this.dispose();
         }
     }
 
     private void BackBTMouseClicked(java.awt.event.MouseEvent evt) {
-        Login login = new Login();
-        login.setVisible(true);
-        login.pack();
-        login.setLocationRelativeTo(null);
-        login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        new Login();
         this.dispose();
     }
 

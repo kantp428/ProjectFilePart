@@ -30,6 +30,26 @@ public class LecturerPage extends javax.swing.JFrame {
         initComponents();
     }
 
+    public LecturerPage() {
+        this.setTitle("Lecturer-->");
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            //
+        }
+
+        String[] courseName = PathCourseSet.getCourseName();
+
+        if (courseName != null) {
+            courseComboBox = new javax.swing.JComboBox<>(courseName);
+        } else {
+            courseComboBox = new JComboBox<>();
+        }
+
+        initComponents();
+        setVisible(true);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,10 +79,10 @@ public class LecturerPage extends javax.swing.JFrame {
         usernameLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         usernameLabel.setText(fullName);
 
-        Usericon.setIcon(new javax.swing.ImageIcon("src/resource.Image/userImage.jpg")); // NOI18N
+        Usericon.setIcon(new javax.swing.ImageIcon("src/resource/Image/userImage.jpg")); // NOI18N
         Usericon.setToolTipText("");
 
-        confirmButton.setIcon(new javax.swing.ImageIcon("src/resource.Image/confirmButtonImage.png")); // NOI18N
+        confirmButton.setIcon(new javax.swing.ImageIcon("src/resource/Image/confirmButtonImage.png")); // NOI18N
         confirmButton.setPreferredSize(new java.awt.Dimension(30, 30));
         confirmButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
