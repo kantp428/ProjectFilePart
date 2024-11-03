@@ -48,8 +48,8 @@ public class MapPanel extends JPanel {
 
     private void createNodes() {
         double year = 1;
-        int x = 100;
-        int y = 100;
+        int x = 0;
+        int y = 0;
         int w = 100;
         int t = 1;
 
@@ -70,27 +70,59 @@ public class MapPanel extends JPanel {
             drawingPanel.add(label);
         }
         }
+        /////////////////////////////////////////////////////
+        HashMap<Double,Integer> setX = new HashMap<Double,Integer>();
+        HashMap<Double,Integer> setY = new HashMap<Double,Integer>();
+        int valuex = 100;
+        int valuey = 100;
+        for(double i=1;i<=4.5;i+=0.5){
+            setX.put(i,valuex);
+            valuex += 200;
+            setY.put(i,valuey);
+        }
+//        int[] valuey = new int[8];
+//        for(int i=0;i<8;i++){
+//            valuey[i] = 100;
+//        }
+//        Course c = ObjReader.readObj(filePath);
+//        for(String i : c.getAllsubCode()){
+//            Subject s = c.getIdMap().get(i);
+//            if (s.getYear() == 0) continue;
+//            if(s.getYear() == year+0.5){
+//                //System.out.println("xxxxxxxxxx "+year+" xxxxxxxxxx");
+//                year+=0.5;
+//                x += 200;
+//                y = 100;
+//            }
+//            nodes.put(s.getId(),new Node(s,x,y,this));
+//            y += 100;
+//        }
+
 
         Course c = ObjReader.readObj(filePath);
         for(String i : c.getAllsubCode()){
             Subject s = c.getIdMap().get(i);
             if (s.getYear() == 0) continue;
-            if(s.getYear() == year+0.5){
-                //System.out.println("xxxxxxxxxx "+year+" xxxxxxxxxx");
-                year+=0.5;
-                x += 200;
-                y = 100;
-            }
+            y=setY.get(s.getYear());
+            setY.put(s.getYear(),y+100);
+            x=setX.get(s.getYear());
+
+
+
+            //-----------------------------------//
+            System.out.println(y);
             nodes.put(s.getId(),new Node(s,x,y,this));
-            y += 100;
+
+
         }
-        for (String i : c.getAllsubCode()){
-            Subject s = c.getIdMap().get(i);
-            if (s.getYear() == 0) continue;
-            for(Subject sub : s.getNext()){
-                edges.add(new Edge(nodes.get(i), nodes.get(sub.getId())));
+        /////////////////////////////////////////////////////
+            for (String i : c.getAllsubCode()){
+                Subject s = c.getIdMap().get(i);
+                if (s.getYear() == 0) continue;
+                for(Subject sub : s.getNext()){
+                    edges.add(new Edge(nodes.get(i), nodes.get(sub.getId())));
+                }
             }
-        }
     }
 
     // Draw edge if it's active

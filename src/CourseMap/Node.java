@@ -1,6 +1,6 @@
 package CourseMap;
 
-import Course.Subject;
+import Course.*;
 
 import javax.swing.*;
 import java.awt.*;
