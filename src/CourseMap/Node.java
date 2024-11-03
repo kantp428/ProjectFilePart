@@ -44,7 +44,7 @@ public class Node {
 
     public void setClickedActive() {
         nodeLabel.setForeground(ColorMap.ACTIVE_FONT_COLOR);
-        nodeLabel.setBackground(ColorMap.ACTIVE_NODE_COLOR);
+        nodeLabel.setBackground(ColorMap.ACTIVE_CLICKED_NODE_COLOR);
         nodeLabel.setBorder(BorderFactory.createLineBorder(ColorMap.BORDER_ACTIVE_NODE_COLOR, 2));
     }
 
