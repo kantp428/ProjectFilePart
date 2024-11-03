@@ -39,10 +39,6 @@ public class CoursePanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, this, "CourseCreator", JOptionPane.PLAIN_MESSAGE);
     }
 
-    public static void main(String[] args) {
-        new CoursePanel();
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,9 +128,8 @@ public class CoursePanel extends javax.swing.JPanel {
 
     private void selectButtonMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
-        String dir = "src/CourseObjFile/Course_";
         String courseName = (String) courseComboBox.getSelectedItem();
-        Course course = ObjReader.readObj(dir + courseName + ".ser");
+        Course course = ObjReader.readObj(PathCourseSet.getPathOf(courseName));
         courseTextArea.setText("");
 
         for(String code : course.getAllsubCode()) {

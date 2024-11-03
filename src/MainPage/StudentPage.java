@@ -1,7 +1,7 @@
-package PageFrame;
-import AllUser.User;
+package MainPage;
+import Users.User;
 import FilePath.PathCourseSet;
-import Tree.MapPanel;
+import CourseMap.MapPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -58,10 +58,10 @@ public class StudentPage extends JFrame {
         usernameLabel.setPreferredSize(new Dimension(100, 30));
         usernameLabel.setText(fullName);
 
-        Usericon.setIcon(new ImageIcon("src/Image/userImage.jpg")); // NOI18N
+        Usericon.setIcon(new ImageIcon("src/resource/Image/userImage.jpg")); // NOI18N
         Usericon.setToolTipText("");
 
-        confirmButton.setIcon(new ImageIcon("src/Image/confirmButtonImage.png")); // NOI18N
+        confirmButton.setIcon(new ImageIcon("src/resource/Image/confirmButtonImage.png")); // NOI18N
         confirmButton.setPreferredSize(new Dimension(30, 30));
         confirmButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {

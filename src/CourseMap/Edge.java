@@ -1,4 +1,4 @@
-package Tree;
+package CourseMap;
 
 import java.awt.*;
 
@@ -63,7 +63,7 @@ class Edge {
     }
 
     public boolean connects(Node node) {
-        return source == node || target == node; // Check if the edge connects to the node if not connect one will be null
+        return source == node || target == node; // bin.Check if the edge connects to the node if not connect one will be null
     }
 
     // Getter & Setter

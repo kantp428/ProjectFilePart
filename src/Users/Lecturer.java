@@ -1,6 +1,4 @@
-package AllUser;
-
-import java.io.Serializable;
+package Users;
 
 public class Lecturer extends User {
     public Lecturer(String userName, String fullName, String lastName, String password,AllUser alluser) {

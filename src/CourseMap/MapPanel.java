@@ -1,4 +1,4 @@
-package Tree;
+package CourseMap;
 
 import Course.*;
 import javax.swing.*;
