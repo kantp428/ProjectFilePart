@@ -14,11 +14,6 @@ public class LecturerPage extends javax.swing.JFrame {
         this.setTitle("Lecturer-->");
         this.user = user;
         this.fullName = user.getFullName()+" "+user.getLastName();
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            //
-        }
 
         String[] courseName = PathCourseSet.getCourseName();
 
@@ -29,8 +24,6 @@ public class LecturerPage extends javax.swing.JFrame {
         }
 
         initComponents();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        pack();
         setMinimumSize(new Dimension(1245, 720));
         setExtendedState(MAXIMIZED_BOTH);
         setVisible(true);
@@ -38,11 +31,8 @@ public class LecturerPage extends javax.swing.JFrame {
 
     public LecturerPage() {
         this.setTitle("Lecturer-->");
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            //
-        }
+        this.user = null;
+        this.fullName = "Supakorn Leelatanangkul";
 
         String[] courseName = PathCourseSet.getCourseName();
 
@@ -53,8 +43,6 @@ public class LecturerPage extends javax.swing.JFrame {
         }
 
         initComponents();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        pack();
         setMinimumSize(new Dimension(1245, 720));
         setExtendedState(MAXIMIZED_BOTH);
         setVisible(true);
@@ -69,17 +57,13 @@ public class LecturerPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        Color normalColor = Color.white;
-        Color hoverColor = Color.lightGray;
-        Color pressedColor = Color.GRAY;
-
         headerPanel = new javax.swing.JPanel();
         usernameLabel = new javax.swing.JLabel();
         Usericon = new javax.swing.JLabel();
         resetButton = new javax.swing.JButton();
-
         insertFileButton = new javax.swing.JButton();
         centerPanel = new javax.swing.JPanel();
+        resetAllowed = false;
 
         colorPanel = new javax.swing.JPanel() {
             @Override
@@ -107,7 +91,7 @@ public class LecturerPage extends javax.swing.JFrame {
         headerPanel.setPreferredSize(new java.awt.Dimension(800, 65));
 
         usernameLabel.setBackground(new java.awt.Color(255, 255, 255));
-        usernameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        usernameLabel.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 17)); // NOI18N
         usernameLabel.setForeground(new java.awt.Color(255, 255, 255));
         usernameLabel.setText("Username");
         usernameLabel.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -241,21 +225,22 @@ public class LecturerPage extends javax.swing.JFrame {
                                 .addComponent(insertFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(colorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                                 .addComponent(Usericon)
-                                .addGap(28, 28, 28)
-                                .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
         );
         headerPanelLayout.setVerticalGroup(
                 headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(headerPanelLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
+                                .addGap(3, 3, 3)
                                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(2, 2, 2)
                                         .addComponent(Usericon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(headerPanelLayout.createSequentialGroup()
-                                                .addGap(5, 5, 5)
+                                                .addGap(10, 10, 10)
                                                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(courseComboBox)
                                                         .addComponent(insertFileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -282,6 +267,7 @@ public class LecturerPage extends javax.swing.JFrame {
     private void comboBoxActionEvent(java.awt.event.ActionEvent evt) {
         centerPanel.removeAll();
 
+        resetAllowed = true;
         String courseName = (String) courseComboBox.getSelectedItem();
         MapPanel mapPanel = new MapPanel(PathCourseSet.getPathOf(courseName));
         centerPanel.add(mapPanel, "mapPanel");
@@ -298,6 +284,7 @@ public class LecturerPage extends javax.swing.JFrame {
     }
 
     private void resetButtonMouseClicked(MouseEvent evt) {
+        if (!resetAllowed) return;
         centerPanel.removeAll();
         String courseName = (String) courseComboBox.getSelectedItem();
         MapPanel mapPanel = new MapPanel(PathCourseSet.getPathOf(courseName));
@@ -328,8 +315,9 @@ public class LecturerPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
+    private boolean resetAllowed;
     private final CardLayout cardLayout = new CardLayout();
-    private javax.swing.JComboBox<String> courseComboBox;
+    private final javax.swing.JComboBox<String> courseComboBox;
     private javax.swing.JButton resetButton;
     private javax.swing.JLabel Usericon;
     private javax.swing.JLabel usernameLabel;

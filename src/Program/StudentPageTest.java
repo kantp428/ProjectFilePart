@@ -12,6 +12,6 @@ public class StudentPageTest {
             //
         }
 
-        new StudentPage().setVisible(true);
+        new StudentPage();
     }
 }
