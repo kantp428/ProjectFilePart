@@ -16,9 +16,12 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-
+        pack();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addLoginStyle(UsernameTF);
         addLoginStyle(PasswordTF);
+        setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -80,7 +83,7 @@ public class Login extends javax.swing.JFrame {
         RightBackGroundpanel.add(LoginLB);
         LoginLB.setBounds(160, 170, 80, 43);
 
-        KuiconLB.setIcon(new javax.swing.ImageIcon("src/resource/picture/100x100_ku_icon_no_bg.png")); // NOI18N
+        KuiconLB.setIcon(new javax.swing.ImageIcon("src/resource/Image/100x100_ku_icon_no_bg.png")); // NOI18N
         RightBackGroundpanel.add(KuiconLB);
         KuiconLB.setBounds(150, 40, 100, 100);
 
@@ -129,7 +132,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         RightBackGroundpanel.add(SignupButton);
-        SignupButton.setBounds(150, 440, 72, 20);
+        SignupButton.setBounds(150, 440, 80, 20);
 
         PasswordTF.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         PasswordTF.setText("Password");
@@ -160,7 +163,8 @@ public class Login extends javax.swing.JFrame {
         ShowIncorrect.setForeground(new java.awt.Color(255, 51, 51));
         ShowIncorrect.setText("");
         RightBackGroundpanel.add(ShowIncorrect);
-        ShowIncorrect.setBounds(250, 220, 70, 16);
+        ShowIncorrect.setHorizontalTextPosition(SwingConstants.CENTER);
+        ShowIncorrect.setBounds(195, 220, 200, 16);
 
         jPanel1.add(RightBackGroundpanel);
         RightBackGroundpanel.setBounds(400, 0, 400, 500);
@@ -227,11 +231,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void SignupButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        Register rgst = new Register();
-        rgst.setVisible(true);
-        rgst.pack();
-        rgst.setLocationRelativeTo(null);
-        rgst.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        new Register();
         this.dispose();
     }
 
@@ -240,12 +240,20 @@ public class Login extends javax.swing.JFrame {
         String username = UsernameTF.getText();
         String password = PasswordTF.getText();
         AllUser a = new AllUser();
-        a = AllUser.readUserObjFile();
-        for(String i : a.getAllkey()){
-            if(username.equals(i)){
-                haveUser = true;
-                break;
+        if ((a = AllUser.readUserObjFile()) != null){
+            a = AllUser.readUserObjFile();
+            if(username != null){
+                for(String i : a.getAllkey()){
+                    System.out.println(i);
+                    if(username.equals(i)){
+                        haveUser = true;
+                        break;
+                    }
+                }
             }
+        }
+        for(String i : a.getAllkey()){
+            System.out.println(i);
         }
         if (haveUser){
             if(password.equals(a.getUserMap().get(username).getPassword())){
@@ -267,22 +275,33 @@ public class Login extends javax.swing.JFrame {
                     this.dispose();
                 }
             }else{
-                ShowIncorrect.setText("Incorrected");
-                Time.delay(2000,()->ShowIncorrect.setText(""));
+                int answer = JOptionPane.showConfirmDialog(
+                        null,
+                        "Do you want to create an new account?",
+                        "User Incorrected password",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        new ImageIcon("src/resource/Image/confirmButtonImage.png")
+                );
+                if(answer == JOptionPane.YES_OPTION){
+                    a.getUserMap().remove(username);
+                    AllUser.writeUserObjFile(a);
+                }else{
+                    ShowIncorrect.setText("Incorrected password");
+                    Time.delay(2000,()->ShowIncorrect.setText(""));
+                }
             }
         }else{
-            int answer = JOptionPane.showConfirmDialog(null, "Do you want to create an account?", "User not found", JOptionPane.YES_NO_OPTION);
+            JLabel message = new JLabel("Do you want to create an account?");
+            message.setForeground(Color.RED);
+            message.setOpaque(false);
+            int answer = JOptionPane.showConfirmDialog(null, message, "User not found", JOptionPane.YES_NO_OPTION);
             if (answer == JOptionPane.YES_OPTION) {
                 Register rgst = new Register();
-                rgst.setVisible(true);
-                rgst.pack();
-                rgst.setLocationRelativeTo(null);
-                rgst.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 
                 // Dispose the current Login JFrame
                 dispose();
-            } else {
-                System.exit(0);
             }
         }
     }
