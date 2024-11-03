@@ -11,7 +11,7 @@ public class Node {
     private final Subject subject;
     private final int x, y;
     private final JLabel nodeLabel;
-    private MapPanel mapPanel; // Reference to MainApp instance
+    private MapPanel mapPanel;
 
     public Node(Subject s, int x, int y, MapPanel mapPanel) {
         this.subject = s;
