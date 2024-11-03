@@ -2,22 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package UI;
+package Login_Register_Page;
 
 /**
  *
  * @author Title
  */
-import AllUser.AllUser;
-import AllUser.User;
-import Check.CheckTypeClass;
+import Users.AllUser;
+import Users.User;
 import Function.Time;
-import PageFrame.LecturerPage;
-import PageFrame.StudentPage;
+import MainPage.LecturerPage;
+import MainPage.StudentPage;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
 import javax.swing.*;
 
 public class Login extends javax.swing.JFrame {
@@ -71,7 +69,7 @@ public class Login extends javax.swing.JFrame {
         LeftBackGroundpanel.setPreferredSize(new java.awt.Dimension(400, 500));
         LeftBackGroundpanel.setLayout(null);
 
-        scheduleiconLB.setIcon(new javax.swing.ImageIcon("src/picture/150x150_schedule.png")); // NOI18N
+        scheduleiconLB.setIcon(new javax.swing.ImageIcon("src/resource/Image/150x150_schedule.png")); // NOI18N
         scheduleiconLB.setText("jLabel1");
         scheduleiconLB.setPreferredSize(new java.awt.Dimension(150, 150));
         LeftBackGroundpanel.add(scheduleiconLB);
@@ -97,7 +95,7 @@ public class Login extends javax.swing.JFrame {
         RightBackGroundpanel.add(LoginLB);
         LoginLB.setBounds(160, 170, 80, 43);
 
-        KuiconLB.setIcon(new javax.swing.ImageIcon("src/picture/100x100_ku_icon_no_bg.png")); // NOI18N
+        KuiconLB.setIcon(new javax.swing.ImageIcon("src/resource/picture/100x100_ku_icon_no_bg.png")); // NOI18N
         RightBackGroundpanel.add(KuiconLB);
         KuiconLB.setBounds(150, 40, 100, 100);
 
@@ -116,11 +114,11 @@ public class Login extends javax.swing.JFrame {
         RightBackGroundpanel.add(UsernameTF);
         UsernameTF.setBounds(140, 240, 180, 40);
 
-        PassiconLB.setIcon(new javax.swing.ImageIcon("src/picture/100x100_pass.png")); // NOI18N
+        PassiconLB.setIcon(new javax.swing.ImageIcon("src/resource/Image/100x100_pass.png")); // NOI18N
         RightBackGroundpanel.add(PassiconLB);
         PassiconLB.setBounds(100, 300, 20, 20);
 
-        UsericonLB.setIcon(new javax.swing.ImageIcon("src/picture/100x100user.png")); // NOI18N
+        UsericonLB.setIcon(new javax.swing.ImageIcon("src/resource/Image/100x100user.png")); // NOI18N
         RightBackGroundpanel.add(UsericonLB);
         UsericonLB.setBounds(100, 250, 20, 20);
 
@@ -292,13 +290,6 @@ public class Login extends javax.swing.JFrame {
             } else {
                 System.exit(0);
             }
-//            Time.delay(2000,()->ShowIncorrect.setText(""));
-//            Register rgst = new Register();
-//            rgst.setVisible(true);
-//            rgst.pack();
-//            rgst.setLocationRelativeTo(null);
-//            rgst.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//            this.dispose();
         }
     }
 
@@ -316,40 +307,6 @@ public class Login extends javax.swing.JFrame {
         textField.setForeground(Color.black);
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify
     private javax.swing.JLabel KuScheduletxtLB;
     private javax.swing.JLabel KuiconLB;

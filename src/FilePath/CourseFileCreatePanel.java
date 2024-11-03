@@ -6,7 +6,7 @@ package FilePath;
 
 import Course.CreateObjCourse;
 import Function.Time;
-import PageFrame.LecturerPage;
+import MainPage.LecturerPage;
 
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -219,14 +219,14 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String filePath = filePathLb.getText().trim();
 
-        if (nameTextField.getText().equals("Input Course Name")) { // Check if you didn't change name
+        if (nameTextField.getText().equals("Input Course Name")) { // bin.Check if you didn't change name
             statusLb.setText("Please Input Name");
             Time.delay(1000, ()->statusLb.setText(""));
         } else if (filePath.equals("C:\\\\")) {
             statusLb.setText("Please Select FilePath");
             Time.delay(1000, ()->statusLb.setText(""));
 
-        } else if (!filePath.toLowerCase().endsWith(".csv")) { // Check if the file path is a CSV file
+        } else if (!filePath.toLowerCase().endsWith(".csv")) { // bin.Check if the file path is a CSV file
             statusLb.setText("Not .csv file");
             Time.delay(1000, ()->statusLb.setText(""));
 
@@ -246,15 +246,6 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
         nameTextField.setText("Input Course Name");
         statusLb.setText("reset");
         Time.delay(1000, ()->statusLb.setText(""));
-    }
-
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            //
-        }
-        new CourseFileCreatePanel(null);
     }
 
     private final JFileChooser fc = new JFileChooser();

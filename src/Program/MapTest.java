@@ -1,9 +1,10 @@
-package Tree;
+package Program;
 
+import CourseMap.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainRun {
+public class MapTest {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -15,7 +16,7 @@ public class MainRun {
         mainframe.setTitle("Frame");
         mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        MapPanel mapPanel = new MapPanel("src/CourseObjFile/Course_CPE.ser");
+        MapPanel mapPanel = new MapPanel("src/resource/CourseObjFile/Course_CPE.ser");
         mainframe.add(mapPanel);
         mainframe.setExtendedState(Frame.MAXIMIZED_BOTH);
         mainframe.setVisible(true);

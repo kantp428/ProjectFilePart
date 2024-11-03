@@ -1,6 +1,5 @@
-package AllUser;
+package Users;
 
-import javax.swing.*;
 import java.util.*;
 import java.io.*;
 
@@ -13,7 +12,7 @@ public class AllUser implements Serializable{
 
     public static void writeUserObjFile(AllUser alluser){
         try{
-            FileOutputStream file = new FileOutputStream("src/ FileUserID/allUser.ser");
+            FileOutputStream file = new FileOutputStream("src/resouce. FileUserID/allUser.ser");
             ObjectOutputStream out = new ObjectOutputStream(file);
             out.writeObject(alluser);
 
@@ -32,7 +31,7 @@ public class AllUser implements Serializable{
     public static AllUser readUserObjFile(){
         AllUser allUser = null ;
         try{
-           FileInputStream fi = new FileInputStream("src/ FileUserID/allUser.ser");
+           FileInputStream fi = new FileInputStream("src/resouce. FileUserID/allUser.ser");
            ObjectInputStream oi = new ObjectInputStream(fi);
            allUser = (AllUser) oi.readObject();
 

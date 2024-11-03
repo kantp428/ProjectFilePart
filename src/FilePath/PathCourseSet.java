@@ -6,7 +6,7 @@ import java.io.*;
 public class PathCourseSet {
 
     public static String[] getCourseName() {
-        File dir = new File("src/CourseObjFile/");
+        File dir = new File("src/resource/CourseObjFile/");
         String[] courseName = dir.list((dir1, filename) -> filename.endsWith(".ser"));
 
         // remove .ser from file
@@ -24,11 +24,11 @@ public class PathCourseSet {
     }
 
     public static String getPathOf(String courseName) {
-        return "src/CourseObjFile/Course_" + courseName + ".ser";
+        return "src/resource/CourseObjFile/Course_" + courseName + ".ser";
     }
 
     public static String[] getCoursePath() {
-        File dir = new File("src/CourseObjFile/");
+        File dir = new File("src/resource/CourseObjFile/");
         String[] courseName = dir.list((dir1, filename) -> filename.endsWith(".ser"));
 
         if (courseName != null) {
