@@ -7,6 +7,7 @@ package FilePath;
 import Course.CreateObjCourse;
 import Function.Time;
 import MainPage.LecturerPage;
+import MainPage.StudentPage;
 
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -25,14 +26,9 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
      */
     public CourseFileCreatePanel(LecturerPage lecturerPage) {
         this.lecturerPage = lecturerPage;
-        try {
-            // this line make JFileChooser look and feel
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
 
-        }
         initComponents();
-        fc.setMultiSelectionEnabled(true);
+        fc.setMultiSelectionEnabled(false);
         fc.setCurrentDirectory(new File("C:\\"));
         // Call this panel to option pane
         JOptionPane.showMessageDialog(null, this, "CourseCreator", JOptionPane.PLAIN_MESSAGE);

@@ -1,16 +1,19 @@
 package MainPage;
+import CourseMap.ColorMap;
 import Users.User;
+import FilePath.CourseFileCreatePanel;
 import FilePath.PathCourseSet;
 import CourseMap.MapPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
-public class StudentPage extends JFrame {
-
+public class StudentPage extends javax.swing.JFrame {
     public StudentPage(User user) {
-        this.setTitle("Student -->");
+        this.setTitle("Lecturer-->");
         this.user = user;
         this.fullName = user.getFullName()+" "+user.getLastName();
         try {
@@ -22,12 +25,41 @@ public class StudentPage extends JFrame {
         String[] courseName = PathCourseSet.getCourseName();
 
         if (courseName != null) {
-            courseComboBox = new JComboBox<>(courseName);
+            courseComboBox = new javax.swing.JComboBox<>(courseName);
         } else {
             courseComboBox = new JComboBox<>();
         }
 
         initComponents();
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        pack();
+        setMinimumSize(new Dimension(1245, 720));
+        setExtendedState(MAXIMIZED_BOTH);
+        setVisible(true);
+    }
+
+    public StudentPage() {
+        this.setTitle("Lecturer-->");
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            //
+        }
+
+        String[] courseName = PathCourseSet.getCourseName();
+
+        if (courseName != null) {
+            courseComboBox = new javax.swing.JComboBox<>(courseName);
+        } else {
+            courseComboBox = new JComboBox<>();
+        }
+
+        initComponents();
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        pack();
+        setMinimumSize(new Dimension(1245, 720));
+        setExtendedState(MAXIMIZED_BOTH);
+        setVisible(true);
     }
 
     /**
@@ -39,41 +71,76 @@ public class StudentPage extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        headerPanel = new JPanel();
-        usernameLabel = new JLabel();
-        Usericon = new JLabel();
-        confirmButton = new JButton();
-        resetButton = new JButton();
-        centerPanel = new JPanel();
+        Color normalColor = Color.white;
+        Color hoverColor = Color.lightGray;
+        Color pressedColor = Color.GRAY;
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        headerPanel = new javax.swing.JPanel();
+        usernameLabel = new javax.swing.JLabel();
+        Usericon = new javax.swing.JLabel();
+        resetButton = new javax.swing.JButton();
 
-        headerPanel.setBackground(new Color(2, 188, 119));
-        headerPanel.setPreferredSize(new Dimension(800, 60));
+        insertFileButton = new javax.swing.JButton();
+        centerPanel = new javax.swing.JPanel();
 
-        usernameLabel.setBackground(new Color(255, 255, 255));
-        usernameLabel.setFont(new Font("Segoe UI", 0, 14)); // NOI18N
-        usernameLabel.setForeground(new Color(255, 255, 255));
+        colorPanel = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(Color.white);
+
+                // Draw rounded rectangle with the specified corner radius
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 10, 10);
+                g2.dispose();
+            }
+        };
+
+        requireBoxLabel = new javax.swing.JLabel();
+        requireLabel = new javax.swing.JLabel();
+        nextBoxLabel = new javax.swing.JLabel();
+        nextLabel = new javax.swing.JLabel();
+        currentLabel = new javax.swing.JLabel();
+        currentBoxLabel = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        headerPanel.setBackground(new java.awt.Color(2, 188, 119));
+        headerPanel.setPreferredSize(new java.awt.Dimension(800, 65));
+
+        usernameLabel.setBackground(new java.awt.Color(255, 255, 255));
+        usernameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(255, 255, 255));
         usernameLabel.setText("Username");
-        usernameLabel.setPreferredSize(new Dimension(100, 30));
+        usernameLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         usernameLabel.setText(fullName);
 
-        Usericon.setIcon(new ImageIcon("src/resource/Image/userImage.jpg")); // NOI18N
+        Usericon.setIcon(new javax.swing.ImageIcon("src/resource/Image/userImage.jpg")); // NOI18N
         Usericon.setToolTipText("");
 
-        confirmButton.setIcon(new ImageIcon("src/resource/Image/confirmButtonImage.png")); // NOI18N
-        confirmButton.setPreferredSize(new Dimension(30, 30));
-        confirmButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                confirmButtonMouseClicked(evt);
+        courseComboBox.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 16));
+        courseComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                comboBoxActionEvent(evt);
             }
         });
 
-        courseComboBox.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+        insertFileButton.setText("INSERT");
+        insertFileButton.setFocusPainted(false);
+        insertFileButton.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 16));
+        insertFileButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                insertFileButtonMouseClicked(evt);
+            }
+        });
 
-
-        resetButton.setText("Reset");
-        resetButton.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+        resetButton.setText("RESET");
+        resetButton.setFocusPainted(false);
+        resetButton.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 16));
+        resetButton.setBackground(Color.WHITE);
+        resetButton.setForeground(Color.BLACK);
         resetButton.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
@@ -81,42 +148,126 @@ public class StudentPage extends JFrame {
             }
         });
 
-        GroupLayout headerPanelLayout = new GroupLayout(headerPanel);
+        colorPanel.setPreferredSize(new java.awt.Dimension(400, 30));
+        colorPanel.setLayout(new java.awt.GridBagLayout());
+        colorPanel.setOpaque(false);
+
+        GridBagConstraints gridBagConstraints;
+
+        currentBoxLabel.setBackground(ColorMap.ACTIVE_CLICKED_NODE_COLOR);
+        currentBoxLabel.setBorder(BorderFactory.createLineBorder(ColorMap.BORDER_ACTIVE_NODE_COLOR,2));
+        currentBoxLabel.setOpaque(true);
+        currentBoxLabel.setPreferredSize(new java.awt.Dimension(21, 21));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 21;
+        gridBagConstraints.ipady = 21;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(8, 30, 0, 0);
+        colorPanel.add(currentBoxLabel, gridBagConstraints);
+
+        nextBoxLabel.setBackground(ColorMap.ACTIVE_TARGET_NODE_COLOR);
+        nextBoxLabel.setOpaque(true);
+        nextBoxLabel.setPreferredSize(new java.awt.Dimension(25, 25));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(8, 34, 0, 0);
+        colorPanel.add(nextBoxLabel, gridBagConstraints);
+
+        requireBoxLabel.setBackground(ColorMap.ACTIVE_SOURCE_NODE_COLOR);
+        requireBoxLabel.setOpaque(true);
+        requireBoxLabel.setPreferredSize(new java.awt.Dimension(25, 25));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(8, 22, 0, 0);
+        colorPanel.add(requireBoxLabel, gridBagConstraints);
+
+        requireLabel.setText("Require");
+        requireLabel.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 13));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 12;
+        gridBagConstraints.ipady = 23;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 12, 0, 0);
+        colorPanel.add(requireLabel, gridBagConstraints);
+
+        currentLabel.setText("Current");
+        currentLabel.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 13));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 17;
+        gridBagConstraints.ipady = 23;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 18, 0, 0);
+        colorPanel.add(currentLabel, gridBagConstraints);
+
+        nextLabel.setText("Next");
+        nextLabel.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 13));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.ipady = 23;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 12, 0, 28);
+        colorPanel.add(nextLabel, gridBagConstraints);
+
+
+
+        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
-                headerPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(headerPanelLayout.createSequentialGroup()
                                 .addGap(45, 45, 45)
-                                .addComponent(courseComboBox, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(confirmButton, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(courseComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGap(18, 18, 18)
-                                .addComponent(resetButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                                .addComponent(insertFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(colorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                                 .addComponent(Usericon)
                                 .addGap(28, 28, 28)
-                                .addComponent(usernameLabel, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
         );
         headerPanelLayout.setVerticalGroup(
-                headerPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(headerPanelLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addGroup(headerPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(usernameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Usericon, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Usericon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(headerPanelLayout.createSequentialGroup()
                                                 .addGap(5, 5, 5)
-                                                .addGroup(headerPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(courseComboBox)
-                                                        .addComponent(confirmButton, GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                                                        .addComponent(resetButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 2, GroupLayout.PREFERRED_SIZE)))
+                                                        .addComponent(insertFileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(resetButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(colorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(11, 11, 11))
         );
 
-        getContentPane().add(headerPanel, BorderLayout.NORTH);
+        getContentPane().add(headerPanel, java.awt.BorderLayout.NORTH);
 
         centerPanel.setLayout(cardLayout);
         // Set default centerPanel
@@ -125,83 +276,77 @@ public class StudentPage extends JFrame {
         centerPanel.add(blankPanel, BorderLayout.CENTER);
         centerPanel.add(blankPanel, "blankPanel");
 
-        getContentPane().add(centerPanel, BorderLayout.CENTER);
+        getContentPane().add(centerPanel, java.awt.BorderLayout.CENTER);
+
         pack();
     }// </editor-fold>
 
-    private void confirmButtonMouseClicked(MouseEvent evt) {
-        // Clear centerPanel to remove any existing components
+    private void comboBoxActionEvent(java.awt.event.ActionEvent evt) {
         centerPanel.removeAll();
 
         String courseName = (String) courseComboBox.getSelectedItem();
-
         MapPanel mapPanel = new MapPanel(PathCourseSet.getPathOf(courseName));
         centerPanel.add(mapPanel, "mapPanel");
 
-        // Show the newly added mapPanel
         cardLayout.show(centerPanel, "mapPanel");
 
-        // Refresh/revalidate centerPanel to apply changes
+        // Repaint to make sure the UI is updated
         centerPanel.revalidate();
         centerPanel.repaint();
+    }
+
+    private void insertFileButtonMouseClicked(MouseEvent evt) {
+
     }
 
     private void resetButtonMouseClicked(MouseEvent evt) {
         centerPanel.removeAll();
 
-        JPanel blankPanel = new JPanel();
-        blankPanel.setPreferredSize(new Dimension(800, 449));
-        centerPanel.add(blankPanel, BorderLayout.CENTER);
-        centerPanel.add(blankPanel);
+        String courseName = (String) courseComboBox.getSelectedItem();
+        MapPanel mapPanel = new MapPanel(PathCourseSet.getPathOf(courseName));
+        centerPanel.add(mapPanel, "mapPanel");
 
-        cardLayout.show(centerPanel, "blankPanel");
+        cardLayout.show(centerPanel, "mapPanel");
+
+        // Repaint to make sure the UI is updated
         centerPanel.revalidate();
         centerPanel.repaint();
     }
 
     public void updateCourseComboBox() {
-            String[] courseNames = PathCourseSet.getCourseName();
+        String[] courseNames = PathCourseSet.getCourseName();
 
-            // Clear existing items from the combo box
-            courseComboBox.removeAllItems();
+        courseComboBox.removeAllItems();
 
-            // Add each course name to the combo box
-            if (courseNames != null) {
-                for (String courseName : courseNames) {
-                    courseComboBox.addItem(courseName);
-                }
+        if (courseNames != null) {
+            for (String courseName : courseNames) {
+                courseComboBox.addItem(courseName);
             }
+        }
 
-            // Repaint to make sure the UI is updated
-            courseComboBox.revalidate();
-            courseComboBox.repaint();
+        // Repaint to make sure the UI is updated
+        courseComboBox.revalidate();
+        courseComboBox.repaint();
 
     }
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        try {
-//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//        } catch (Exception e) {
-//            //
-//        }
-//
-//        JFrame mainFrame = new StudentPage();
-//        mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//        mainFrame.setVisible(true);
-//    }
-
     // Variables declaration - do not modify
     private final CardLayout cardLayout = new CardLayout();
-    private JComboBox<String> courseComboBox;
-    private JButton confirmButton;
-    private JButton resetButton;
-    private JLabel Usericon;
-    private JLabel usernameLabel;
-    private JPanel headerPanel;
-    private JPanel centerPanel;
+    private javax.swing.JComboBox<String> courseComboBox;
+    private javax.swing.JButton resetButton;
+    private javax.swing.JLabel Usericon;
+    private javax.swing.JLabel usernameLabel;
+    private javax.swing.JButton insertFileButton;
+    private javax.swing.JPanel headerPanel;
+    private javax.swing.JPanel centerPanel;
+
+    private javax.swing.JPanel colorPanel;
+    private javax.swing.JLabel currentBoxLabel;
+    private javax.swing.JLabel currentLabel;
+    private javax.swing.JLabel nextBoxLabel;
+    private javax.swing.JLabel nextLabel;
+    private javax.swing.JLabel requireBoxLabel;
+    private javax.swing.JLabel requireLabel;
     private User user;
     private String fullName;
     // End of variables declaration

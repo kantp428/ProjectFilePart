@@ -1,10 +1,10 @@
 package Program;
 
-import MainPage.LecturerPage;
+import MainPage.StudentPage;
 
 import javax.swing.*;
 
-public class MainPageTest {
+public class StudentPageTest {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -12,6 +12,6 @@ public class MainPageTest {
             //
         }
 
-        new LecturerPage();
+        new StudentPage().setVisible(true);
     }
 }

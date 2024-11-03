@@ -3,7 +3,6 @@ package Login_Register_Page;
 import Users.AllUser;
 import Users.User;
 import Function.Time;
-import MainPage.LecturerPage;
 import MainPage.StudentPage;
 
 import java.awt.Color;
@@ -267,7 +266,7 @@ public class Login extends javax.swing.JFrame {
                     this.dispose();
                 }else if(username.contains("a")){
                     User lecturer = a.getUserMap().get(username);
-                    LecturerPage ltp = new LecturerPage(a.getUserMap().get(username));
+                    StudentPage ltp = new StudentPage(a.getUserMap().get(username));
                     ltp.setVisible(true);
                     ltp.pack();
                     ltp.setLocationRelativeTo(null);
