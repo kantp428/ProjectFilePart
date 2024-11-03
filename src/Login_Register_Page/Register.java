@@ -9,6 +9,7 @@ package Login_Register_Page;
  * @author Title
  */
 import Users.AllUser;
+import Users.Lecturer;
 import Users.User;
 import Users.Student;
 
@@ -26,6 +27,7 @@ public class Register extends javax.swing.JFrame {
         this.setResizable(false);
         addClearOnFocusListener(UsernameTF,"Have user already");
         addClearOnFocusListener(UsernameTF, "Start with 'b' followed by your student ID");
+        addClearOnFocusListener(UsernameTF,"Start with 'b' or 'a'");
         addClearOnFocusListener(PasswordTF, "1 Bigletter and 3 Smallletter");
         addClearOnFocusListener(PasswordTF, "Password not equal");
         pack();
@@ -227,9 +229,12 @@ public class Register extends javax.swing.JFrame {
         }
         int countBigLetter = 0;
         int countSmallLetter = 0;
-        if(!username.contains("b") || username.length() != 11 && check) {
-            UsernameTF.setText("Start with 'b' followed by your student ID");
+        if(!(username.contains("b") || username.contains("a"))){
+            UsernameTF.setText("Start with 'b' or 'a'");
             check = false;
+        }
+        if(username.contains("b") && username.length() !=11 ){
+            UsernameTF.setText("Start with 'b' followed by your student ID");
         }
         for (char i : password.toCharArray()) {
             if(i > 'A' && i < 'Z') {
@@ -247,11 +252,41 @@ public class Register extends javax.swing.JFrame {
             check = false;
         }
         if(check){
-            System.out.println("11");
-            User newUser = new Student(username,fullName,surName,password,a);
-            AllUser.writeUserObjFile(a);
-            new Login();
-            this.dispose();
+//            System.out.println("11");
+            if(username.contains("b")){
+                User newUser = new Student(username,fullName,surName,password,a);
+                AllUser.writeUserObjFile(a);
+                new Login();
+                this.dispose();
+            }else if (username.contains("a")){
+                String showPopUp = "Enter Lecturer code";
+                boolean checkPass = true;
+                boolean firstInput = true;
+                while(checkPass){
+                    JTextField passwordField = new JPasswordField();
+                    int option = JOptionPane.showConfirmDialog(
+                            null,
+                            passwordField,
+                            showPopUp,
+                            JOptionPane.OK_CANCEL_OPTION,
+                            JOptionPane.PLAIN_MESSAGE);
+                    if(option == JOptionPane.OK_OPTION){
+                        if(passwordField.getText().equals("Inwza007xlucifer")){
+                            checkPass = false;
+                            User newUser = new Lecturer(username,fullName,surName,password,a);
+                            AllUser.writeUserObjFile(a);
+                            new Login();
+                            this.dispose();
+                        }
+                    }else{
+                        System.exit(0);
+                    }
+                    if (firstInput) {
+                        showPopUp = "Wrong password Try again!";
+                        firstInput = false;
+                    }
+                }
+            }
         }
     }
 
