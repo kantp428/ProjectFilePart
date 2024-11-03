@@ -1,4 +1,5 @@
 package PageFrame;
+import AllUser.User;
 import FilePath.CourseFileCreatePanel;
 import FilePath.PathCourseSet;
 import Tree.MapPanel;
@@ -8,8 +9,10 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class LecturerPage extends javax.swing.JFrame {
-
-    public LecturerPage() {
+    public LecturerPage(User user) {
+        this.setTitle("Lecturer-->");
+        this.user = user;
+        this.fullName = user.getFullName()+" "+user.getLastName();
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
@@ -54,6 +57,7 @@ public class LecturerPage extends javax.swing.JFrame {
         usernameLabel.setForeground(new java.awt.Color(255, 255, 255));
         usernameLabel.setText("Username");
         usernameLabel.setPreferredSize(new java.awt.Dimension(100, 30));
+        usernameLabel.setText(fullName);
 
         Usericon.setIcon(new javax.swing.ImageIcon("src/Image/userImage.jpg")); // NOI18N
         Usericon.setToolTipText("");
@@ -193,17 +197,17 @@ public class LecturerPage extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            //
-        }
-
-        JFrame mainFrame = new LecturerPage();
-        mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        mainFrame.setVisible(true);
-    }
+//    public static void main(String args[]) {
+//        try {
+//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//        } catch (Exception e) {
+//            //
+//        }
+//
+//        JFrame mainFrame = new LecturerPage(user);
+//        mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        mainFrame.setVisible(true);
+//    }
 
     // Variables declaration - do not modify
     private final CardLayout cardLayout = new CardLayout();
@@ -215,5 +219,7 @@ public class LecturerPage extends javax.swing.JFrame {
     private javax.swing.JButton insertFileButton;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel centerPanel;
+    private User user;
+    private String fullName;
     // End of variables declaration
 }
