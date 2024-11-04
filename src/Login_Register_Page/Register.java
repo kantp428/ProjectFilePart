@@ -25,11 +25,13 @@ public class Register extends javax.swing.JFrame {
     public Register() {
         initComponents();
         this.setResizable(false);
-        addClearOnFocusListener(UsernameTF,"Have user already");
-        addClearOnFocusListener(UsernameTF, "Start with 'b' followed by your student ID");
-        addClearOnFocusListener(UsernameTF,"Start with 'b' or 'a'");
-        addClearOnFocusListener(PasswordTF, "1 Bigletter and 3 Smallletter");
-        addClearOnFocusListener(PasswordTF, "Password not equal");
+        addClearOnFocusListener(firstNameTF,"Input your name pls");
+        addClearOnFocusListener(sureNameTF,"Input your surname pls");
+        addClearOnFocusListener(usernameTF,"Have user already");
+        addClearOnFocusListener(usernameTF, "Start with 'b' followed by your student ID");
+        addClearOnFocusListener(usernameTF,"Start with 'b' or 'a'");
+        addClearOnFocusListener(passwordTF, "1 big letter and 3 small letter");
+        addClearOnFocusListener(passwordTF, "Password not equal");
         pack();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,13 +58,13 @@ public class Register extends javax.swing.JFrame {
         SureNameLB = new javax.swing.JLabel();
         UsernameLB = new javax.swing.JLabel();
         PassLB = new javax.swing.JLabel();
-        FirstNameTF = new javax.swing.JTextField();
-        SureNameTF = new javax.swing.JTextField();
-        UsernameTF = new javax.swing.JTextField();
+        firstNameTF = new javax.swing.JTextField();
+        sureNameTF = new javax.swing.JTextField();
+        usernameTF = new javax.swing.JTextField();
         BackBT = new javax.swing.JButton();
         Confirm = new javax.swing.JButton();
         confirmPassTF = new javax.swing.JPasswordField();
-        PasswordTF = new javax.swing.JPasswordField();
+        passwordTF = new javax.swing.JPasswordField();
         ShowPassCB = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -132,17 +134,17 @@ public class Register extends javax.swing.JFrame {
         jPanel3.add(PassLB);
         PassLB.setBounds(20, 270, 130, 40);
 
-        FirstNameTF.setPreferredSize(new java.awt.Dimension(180, 40));
-        jPanel3.add(FirstNameTF);
-        FirstNameTF.setBounds(180, 60, 180, 40);
+        firstNameTF.setPreferredSize(new java.awt.Dimension(180, 40));
+        jPanel3.add(firstNameTF);
+        firstNameTF.setBounds(180, 60, 180, 40);
 
-        SureNameTF.setPreferredSize(new java.awt.Dimension(180, 40));
-        jPanel3.add(SureNameTF);
-        SureNameTF.setBounds(180, 130, 180, 40);
+        sureNameTF.setPreferredSize(new java.awt.Dimension(180, 40));
+        jPanel3.add(sureNameTF);
+        sureNameTF.setBounds(180, 130, 180, 40);
 
-        UsernameTF.setPreferredSize(new java.awt.Dimension(180, 40));
-        jPanel3.add(UsernameTF);
-        UsernameTF.setBounds(180, 200, 180, 40);
+        usernameTF.setPreferredSize(new java.awt.Dimension(180, 40));
+        jPanel3.add(usernameTF);
+        usernameTF.setBounds(180, 200, 180, 40);
 
         BackBT.setFocusPainted(false);
         BackBT.setText("Back");
@@ -171,11 +173,11 @@ public class Register extends javax.swing.JFrame {
         jPanel3.add(confirmPassTF);
         confirmPassTF.setBounds(180, 340, 180, 40);
 
-        PasswordTF.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        PasswordTF.setPreferredSize(new java.awt.Dimension(180, 40));
+        passwordTF.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        passwordTF.setPreferredSize(new java.awt.Dimension(180, 40));
 
-        jPanel3.add(PasswordTF);
-        PasswordTF.setBounds(180, 270, 180, 40);
+        jPanel3.add(passwordTF);
+        passwordTF.setBounds(180, 270, 180, 40);
 
         ShowPassCB.setOpaque(false);
         ShowPassCB.setFocusPainted(false);
@@ -210,19 +212,27 @@ public class Register extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void ConfirmMouseClicked(java.awt.event.MouseEvent evt) {
-        String fullName = FirstNameTF.getText();
-        String surName = SureNameTF.getText();
-        String username = UsernameTF.getText();
-        String password = PasswordTF.getText();
-        String conPass = confirmPassTF.getText();
-        AllUser a = new AllUser();
         boolean check = true ;
+        String fullName = firstNameTF.getText();
+        String surName = sureNameTF.getText();
+        String username = usernameTF.getText();
+        String password = passwordTF.getText();
+        String conPass = confirmPassTF.getText();
+        if(fullName.equals("")){
+            firstNameTF.setText("Input your name pls");
+            check = false;
+        }
+        if(surName.equals("")){
+            sureNameTF.setText("Input your surname pls");
+            check = false;
+        }
+        AllUser a = new AllUser();
         if((AllUser.readUserObjFile())!=null){
             a = AllUser.readUserObjFile();
             for(String i : a.getAllkey()){
                 if(username.equals(i)){
                     System.out.println(i);
-                    UsernameTF.setText("Have user already");
+                    usernameTF.setText("Have user already");
                     check = false;
                 }
             }
@@ -230,11 +240,11 @@ public class Register extends javax.swing.JFrame {
         int countBigLetter = 0;
         int countSmallLetter = 0;
         if(!(username.contains("b") || username.contains("a"))){
-            UsernameTF.setText("Start with 'b' or 'a'");
+            usernameTF.setText("Start with 'b' or 'a'");
             check = false;
         }
         if(username.contains("b") && username.length() !=11 ){
-            UsernameTF.setText("Start with 'b' followed by your student ID");
+            usernameTF.setText("Start with 'b' followed by your student ID");
         }
         for (char i : password.toCharArray()) {
             if(i > 'A' && i < 'Z') {
@@ -244,11 +254,13 @@ public class Register extends javax.swing.JFrame {
             }
         }
         if (countBigLetter < 1 && countSmallLetter < 2 && check) {
-                PasswordTF.setText("1 Bigletter and 3 Smallletter");
+                passwordTF.setText("1 big letter and 3 small letter");
+                passwordTF.setEchoChar((char) 0);
                 check = false;
         }
         if (!(password.equals(conPass)) && check) {
-            PasswordTF.setText("Password not equal");
+            passwordTF.setText("Password not equal");
+            passwordTF.setEchoChar((char) 0);
             check = false;
         }
         if(check){
@@ -295,17 +307,17 @@ public class Register extends javax.swing.JFrame {
         this.dispose();
     }
 
-
     private void ShowPassCBActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         if(ShowPassCB.isSelected()){
-            PasswordTF.setEchoChar((char)0);
+            passwordTF.setEchoChar((char)0);
         }else{
-            if(!PasswordTF.getText().equals("Password")) {
-                PasswordTF.setEchoChar('●');
+            if(!passwordTF.getText().equals("Password")) {
+                passwordTF.setEchoChar('●');
             }
         }
     }
+
 
     private void addClearOnFocusListener(javax.swing.JTextField textField, String errorMessage) {
         textField.addFocusListener(new FocusListener() {
@@ -319,7 +331,7 @@ public class Register extends javax.swing.JFrame {
 
             @Override
             public void focusLost(FocusEvent e) {
-                // Do nothing on focus lost
+
             }
         });
     }
@@ -329,17 +341,17 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JButton Confirm;
     private javax.swing.JLabel ConfirmPassLB;
     private javax.swing.JLabel FirstNameLB;
-    private javax.swing.JTextField FirstNameTF;
+    private javax.swing.JTextField firstNameTF;
     private javax.swing.JLabel KuScheduletxtLB;
     private javax.swing.JLabel PassLB;
-    private javax.swing.JPasswordField PasswordTF;
+    private javax.swing.JPasswordField passwordTF;
     private javax.swing.JLabel RegistericonLB;
     private javax.swing.JLabel RegistertxtLB1;
     private javax.swing.JCheckBox ShowPassCB;
     private javax.swing.JLabel SureNameLB;
-    private javax.swing.JTextField SureNameTF;
+    private javax.swing.JTextField sureNameTF;
     private javax.swing.JLabel UsernameLB;
-    private javax.swing.JTextField UsernameTF;
+    private javax.swing.JTextField usernameTF;
     private javax.swing.JPasswordField confirmPassTF;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JPanel jPanel1;
