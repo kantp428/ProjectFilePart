@@ -265,10 +265,12 @@ public class Login extends javax.swing.JFrame {
                 if(password.equals(a.getUserMap().get(username).getPassword())){
                     if(username.contains("b")){
                         User student = a.getUserMap().get(username);
+                        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(enterKeyDispatcher);
                         StudentPage stp = new StudentPage(student);
                         this.dispose();
                     }else if(username.contains("a")){
                         User lecturer = a.getUserMap().get(username);
+                        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(enterKeyDispatcher);
                         LecturerPage ltp = new LecturerPage(a.getUserMap().get(username));
                         this.dispose();
                     }
@@ -328,10 +330,12 @@ public class Login extends javax.swing.JFrame {
                 if(password.equals(a.getUserMap().get(username).getPassword())){
                     if(username.contains("b")){
                         User student = a.getUserMap().get(username);
+                        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(enterKeyDispatcher);
                         StudentPage stp = new StudentPage(student);
                         this.dispose();
                     }else if(username.contains("a")){
                         User lecturer = a.getUserMap().get(username);
+                        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(enterKeyDispatcher);
                         LecturerPage ltp = new LecturerPage(a.getUserMap().get(username));
                         this.dispose();
                     }
