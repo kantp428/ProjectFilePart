@@ -32,6 +32,7 @@ public class Register extends javax.swing.JFrame {
         addClearOnFocusListener(usernameTF,"Start with 'b' or 'a'");
         addClearOnFocusListener(passwordTF, "1 big letter and 3 small letter");
         addClearOnFocusListener(passwordTF, "Password not equal");
+        //
         pack();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
