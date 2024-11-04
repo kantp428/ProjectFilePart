@@ -54,36 +54,44 @@ public class MapPanel extends JPanel {
         int t = 1;
 
         for(int i=1;i<5;i++){
-        for(int j=1;j<3;j++){
-            if(t>2) t=1;
-            //JLabel label = new JLabel("<html>Year<br>"+i+":"+t+"</html>", SwingConstants.CENTER);
-            JLabel label = new JLabel("<html><div style='text-align: center;'>Year<br>" + i + ":" + t + "</div></html>", SwingConstants.CENTER);
+            for(int j=1;j<3;j++){
+                if(t>2) t=1;
+                //JLabel label = new JLabel("<html>Year<br>"+i+":"+t+"</html>", SwingConstants.CENTER);
+                JLabel label = new JLabel("<html><div style='text-align: center;'>Year<br>" + i + ":" + t + "</div></html>", SwingConstants.CENTER);
 
-            label.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
-            label.setEnabled(false);
-            label.setOpaque(false);
-            label.setHorizontalAlignment(SwingConstants.CENTER); // Center horizontally
-            label.setVerticalAlignment(SwingConstants.CENTER); // Center vertically
-            label.setBounds(w, 20, 100, 60);
-            w+=200;
-            t++;
-            drawingPanel.add(label);
+                label.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
+                label.setEnabled(false);
+                label.setOpaque(false);
+                label.setHorizontalAlignment(SwingConstants.CENTER); // Center horizontally
+                label.setVerticalAlignment(SwingConstants.CENTER); // Center vertically
+                label.setBounds(w, 20, 100, 60);
+                w+=200;
+                t++;
+                drawingPanel.add(label);
+            }
         }
+
+        HashMap<Double,Integer> setX = new HashMap<Double,Integer>();
+        HashMap<Double,Integer> setY = new HashMap<Double,Integer>();
+        int valuex = 100;
+        int valuey = 100;
+        for(double i=1;i<=4.5;i+=0.5){
+            setX.put(i,valuex);
+            valuex += 200;
+            setY.put(i,valuey);
         }
 
         Course c = ObjReader.readObj(filePath);
         for(String i : c.getAllsubCode()){
             Subject s = c.getIdMap().get(i);
             if (s.getYear() == 0) continue;
-            if(s.getYear() == year+0.5){
-                //System.out.println("xxxxxxxxxx "+year+" xxxxxxxxxx");
-                year+=0.5;
-                x += 200;
-                y = 100;
-            }
+            y=setY.get(s.getYear());
+            setY.put(s.getYear(),y+100);
+            x=setX.get(s.getYear());
+
             nodes.put(s.getId(),new Node(s,x,y,this));
-            y += 100;
         }
+        /////////////////////////////////////////////////////
         for (String i : c.getAllsubCode()){
             Subject s = c.getIdMap().get(i);
             if (s.getYear() == 0) continue;
