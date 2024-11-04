@@ -25,7 +25,7 @@ public class LecturerPage extends javax.swing.JFrame {
 
         initComponents();
         setMinimumSize(new Dimension(1245, 720));
-        setExtendedState(MAXIMIZED_BOTH);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
     }
 
@@ -44,7 +44,7 @@ public class LecturerPage extends javax.swing.JFrame {
 
         initComponents();
         setMinimumSize(new Dimension(1245, 720));
-        setExtendedState(MAXIMIZED_BOTH);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
     }
 

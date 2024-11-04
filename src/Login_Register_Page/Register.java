@@ -26,11 +26,10 @@ public class Register extends javax.swing.JFrame {
     public Register() {
         initComponents();
         this.setResizable(false);
+        addClearOnFocusListener(usernameTF,"b6620xxxxxx or axxxx");
         addClearOnFocusListener(firstNameTF,"Input your name pls");
         addClearOnFocusListener(sureNameTF,"Input your surname pls");
         addClearOnFocusListener(usernameTF,"Have user already");
-        addClearOnFocusListener(usernameTF, "Start with 'b' followed by your student ID");
-        addClearOnFocusListener(usernameTF,"Start with 'b' or 'a'");
         addClearOnFocusListener(passwordTF, "1 big letter and 3 small letter");
         addClearOnFocusListener(passwordTF, "Password not equal");
         //
@@ -52,8 +51,8 @@ public class Register extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         KuScheduletxtLB = new javax.swing.JLabel();
-        RegistertxtLB1 = new javax.swing.JLabel();
-        RegistericonLB = new javax.swing.JLabel();
+        registertxtLB1 = new javax.swing.JLabel();
+        registericonLB = new javax.swing.JLabel();
         //jPanel3 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel() {
             @Override
@@ -67,16 +66,16 @@ public class Register extends javax.swing.JFrame {
                 g2.dispose();
             }
         };
-        ConfirmPassLB = new javax.swing.JLabel();
-        FirstNameLB = new javax.swing.JLabel();
-        SureNameLB = new javax.swing.JLabel();
-        UsernameLB = new javax.swing.JLabel();
-        PassLB = new javax.swing.JLabel();
+        confirmPassLB = new javax.swing.JLabel();
+        firstNameLB = new javax.swing.JLabel();
+        surNameLB = new javax.swing.JLabel();
+        usernameLB = new javax.swing.JLabel();
+        passLB = new javax.swing.JLabel();
         firstNameTF = new javax.swing.JTextField();
         sureNameTF = new javax.swing.JTextField();
         usernameTF = new javax.swing.JTextField();
-        BackBT = new javax.swing.JButton();
-        Confirm = new javax.swing.JButton();
+        backBT = new javax.swing.JButton();
+        confirm = new javax.swing.JButton();
         confirmPassTF = new javax.swing.JPasswordField();
         passwordTF = new javax.swing.JPasswordField();
         ShowPassCB = new javax.swing.JCheckBox();
@@ -99,17 +98,17 @@ public class Register extends javax.swing.JFrame {
         jPanel2.add(KuScheduletxtLB);
         KuScheduletxtLB.setBounds(130, 350, 150, 30);
 
-        RegistertxtLB1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        RegistertxtLB1.setForeground(new java.awt.Color(255, 255, 255));
-        RegistertxtLB1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RegistertxtLB1.setText("Register");
-        RegistertxtLB1.setToolTipText("");
-        jPanel2.add(RegistertxtLB1);
-        RegistertxtLB1.setBounds(130, 320, 150, 30);
+        registertxtLB1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        registertxtLB1.setForeground(new java.awt.Color(255, 255, 255));
+        registertxtLB1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        registertxtLB1.setText("Register");
+        registertxtLB1.setToolTipText("");
+        jPanel2.add(registertxtLB1);
+        registertxtLB1.setBounds(130, 320, 150, 30);
 
-        RegistericonLB.setIcon(new javax.swing.ImageIcon("src/resource/Image/JobApp_preview.png")); // NOI18N
-        jPanel2.add(RegistericonLB);
-        RegistericonLB.setBounds(-30, 30, 430, 350);
+        registericonLB.setIcon(new javax.swing.ImageIcon("src/resource/Image/JobApp_preview.png")); // NOI18N
+        jPanel2.add(registericonLB);
+        registericonLB.setBounds(-30, 30, 430, 350);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(400, 0, 400, 500);
@@ -118,35 +117,35 @@ public class Register extends javax.swing.JFrame {
         jPanel3.setPreferredSize(new java.awt.Dimension(400, 500));
         jPanel3.setLayout(null);
 
-        ConfirmPassLB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ConfirmPassLB.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ConfirmPassLB.setText("Confirm Password");
-        jPanel3.add(ConfirmPassLB);
-        ConfirmPassLB.setBounds(20, 340, 140, 40);
+        confirmPassLB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        confirmPassLB.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        confirmPassLB.setText("Confirm Password");
+        jPanel3.add(confirmPassLB);
+        confirmPassLB.setBounds(20, 340, 140, 40);
 
-        FirstNameLB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        FirstNameLB.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        FirstNameLB.setText("First Name");
-        jPanel3.add(FirstNameLB);
-        FirstNameLB.setBounds(20, 60, 130, 40);
+        firstNameLB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        firstNameLB.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        firstNameLB.setText("Firstname");
+        jPanel3.add(firstNameLB);
+        firstNameLB.setBounds(20, 60, 130, 40);
 
-        SureNameLB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        SureNameLB.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        SureNameLB.setText("Sure Name");
-        jPanel3.add(SureNameLB);
-        SureNameLB.setBounds(20, 130, 130, 40);
+        surNameLB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        surNameLB.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        surNameLB.setText("Surname");
+        jPanel3.add(surNameLB);
+        surNameLB.setBounds(20, 130, 130, 40);
 
-        UsernameLB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        UsernameLB.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        UsernameLB.setText("Username");
-        jPanel3.add(UsernameLB);
-        UsernameLB.setBounds(20, 200, 120, 40);
+        usernameLB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        usernameLB.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        usernameLB.setText("Username");
+        jPanel3.add(usernameLB);
+        usernameLB.setBounds(20, 200, 120, 40);
 
-        PassLB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        PassLB.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        PassLB.setText("Password");
-        jPanel3.add(PassLB);
-        PassLB.setBounds(20, 270, 130, 40);
+        passLB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        passLB.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        passLB.setText("Password");
+        jPanel3.add(passLB);
+        passLB.setBounds(20, 270, 130, 40);
 
         firstNameTF.setPreferredSize(new java.awt.Dimension(180, 40));
         jPanel3.add(firstNameTF);
@@ -160,26 +159,26 @@ public class Register extends javax.swing.JFrame {
         jPanel3.add(usernameTF);
         usernameTF.setBounds(180, 200, 180, 40);
 
-        BackBT.setFocusPainted(false);
-        BackBT.setText("Back");
-        BackBT.setActionCommand("");
-        BackBT.addMouseListener(new java.awt.event.MouseAdapter() {
+        backBT.setFocusPainted(false);
+        backBT.setText("Back");
+        backBT.setActionCommand("");
+        backBT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BackBTMouseClicked(evt);
             }
         });
-        jPanel3.add(BackBT);
-        BackBT.setBounds(20, 410, 72, 23);
+        jPanel3.add(backBT);
+        backBT.setBounds(20, 410, 72, 23);
 
-        Confirm.setFocusPainted(false);
-        Confirm.setText("Confirm");
-        Confirm.addMouseListener(new java.awt.event.MouseAdapter() {
+        confirm.setFocusPainted(false);
+        confirm.setText("Confirm");
+        confirm.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ConfirmMouseClicked(evt);
             }
         });
-        jPanel3.add(Confirm);
-        Confirm.setBounds(290, 410, 80, 23);
+        jPanel3.add(confirm);
+        confirm.setBounds(290, 410, 80, 23);
 
         confirmPassTF.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         confirmPassTF.setPreferredSize(new java.awt.Dimension(180, 40));
@@ -241,79 +240,76 @@ public class Register extends javax.swing.JFrame {
             sureNameTF.setText("Input your surname pls");
             check = false;
         }
-        AllUser a = new AllUser();
-        if((AllUser.readUserObjFile())!=null){
-            a = AllUser.readUserObjFile();
-            for(String i : a.getAllkey()){
-                if(username.equals(i)){
-                    System.out.println(i);
-                    usernameTF.setText("Have user already");
-                    check = false;
+        if(((username.indexOf("b") == 0) && username.length() == 11)||((username.indexOf("a") == 0) && username.length() == 5)){
+            AllUser a = new AllUser();
+            if((AllUser.readUserObjFile())!=null){
+                a = AllUser.readUserObjFile();
+                for(String i : a.getAllkey()){
+                    if(username.equals(i)){
+                        System.out.println(i);
+                        usernameTF.setText("Have user already");
+                        check = false;
+                    }
                 }
             }
-        }
-        int countBigLetter = 0;
-        int countSmallLetter = 0;
-        if(!(username.contains("b") || username.contains("a"))){
-            usernameTF.setText("Start with 'b' or 'a'");
-            check = false;
-        }
-        if(username.contains("b") && username.length() !=11 ){
-            usernameTF.setText("Start with 'b' followed by your student ID");
-        }
-        for (char i : password.toCharArray()) {
-            if(i > 'A' && i < 'Z') {
-                countBigLetter ++;
-            }else if (i > 'a' && i < 'z') {
-                countSmallLetter ++;
+            int countBigLetter = 0;
+            int countSmallLetter = 0;
+            for (char i : password.toCharArray()) {
+                if(i > 'A' && i < 'Z') {
+                    countBigLetter ++;
+                }else if (i > 'a' && i < 'z') {
+                    countSmallLetter ++;
+                }
             }
-        }
-        if (countBigLetter < 1 && countSmallLetter < 2 && check) {
+            if (countBigLetter < 1 && countSmallLetter < 2 && check) {
                 passwordTF.setText("1 big letter and 3 small letter");
                 passwordTF.setEchoChar((char) 0);
                 check = false;
-        }
-        if (!(password.equals(conPass)) && check) {
-            passwordTF.setText("Password not equal");
-            passwordTF.setEchoChar((char) 0);
-            check = false;
-        }
-        if(check){
+            }
+            if (!(password.equals(conPass)) && check) {
+                passwordTF.setText("Password not equal");
+                passwordTF.setEchoChar((char) 0);
+                check = false;
+            }
+            if(check){
 //            System.out.println("11");
-            if(username.contains("b")){
-                User newUser = new Student(username,fullName,surName,password,a);
-                AllUser.writeUserObjFile(a);
-                new Login();
-                this.dispose();
-            }else if (username.contains("a")){
-                String showPopUp = "Enter Lecturer code";
-                boolean checkPass = true;
-                boolean firstInput = true;
-                while(checkPass){
-                    JTextField passwordField = new JPasswordField();
-                    int option = JOptionPane.showConfirmDialog(
-                            null,
-                            passwordField,
-                            showPopUp,
-                            JOptionPane.OK_CANCEL_OPTION,
-                            JOptionPane.PLAIN_MESSAGE);
-                    if(option == JOptionPane.OK_OPTION){
-                        if(passwordField.getText().equals("Inwza007xlucifer")){
-                            checkPass = false;
-                            User newUser = new Lecturer(username,fullName,surName,password,a);
-                            AllUser.writeUserObjFile(a);
-                            new Login();
-                            this.dispose();
+                if(username.contains("b")){
+                    User newUser = new Student(username,fullName,surName,password,a);
+                    AllUser.writeUserObjFile(a);
+                    new Login();
+                    this.dispose();
+                }else if (username.contains("a")){
+                    String showPopUp = "Enter Lecturer code";
+                    boolean checkPass = true;
+                    boolean firstInput = true;
+                    while(checkPass){
+                        JTextField passwordField = new JPasswordField();
+                        int option = JOptionPane.showConfirmDialog(
+                                null,
+                                passwordField,
+                                showPopUp,
+                                JOptionPane.OK_CANCEL_OPTION,
+                                JOptionPane.PLAIN_MESSAGE);
+                        if(option == JOptionPane.OK_OPTION){
+                            if(passwordField.getText().equals("Inwza007xlucifer")){
+                                checkPass = false;
+                                User newUser = new Lecturer(username,fullName,surName,password,a);
+                                AllUser.writeUserObjFile(a);
+                                new Login();
+                                this.dispose();
+                            }
+                        }else{
+                            System.exit(0);
                         }
-                    }else{
-                        System.exit(0);
-                    }
-                    if (firstInput) {
-                        showPopUp = "Wrong password Try again!";
-                        firstInput = false;
+                        if (firstInput) {
+                            showPopUp = "Wrong password Try again!";
+                            firstInput = false;
+                        }
                     }
                 }
             }
+        }else{
+            usernameTF.setText("b6620xxxxxx or axxxx");
         }
     }
 
@@ -352,20 +348,20 @@ public class Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JButton BackBT;
-    private javax.swing.JButton Confirm;
-    private javax.swing.JLabel ConfirmPassLB;
-    private javax.swing.JLabel FirstNameLB;
+    private javax.swing.JButton backBT;
+    private javax.swing.JButton confirm;
+    private javax.swing.JLabel confirmPassLB;
+    private javax.swing.JLabel firstNameLB;
     private javax.swing.JTextField firstNameTF;
     private javax.swing.JLabel KuScheduletxtLB;
-    private javax.swing.JLabel PassLB;
+    private javax.swing.JLabel passLB;
     private javax.swing.JPasswordField passwordTF;
-    private javax.swing.JLabel RegistericonLB;
-    private javax.swing.JLabel RegistertxtLB1;
+    private javax.swing.JLabel registericonLB;
+    private javax.swing.JLabel registertxtLB1;
     private javax.swing.JCheckBox ShowPassCB;
-    private javax.swing.JLabel SureNameLB;
+    private javax.swing.JLabel surNameLB;
     private javax.swing.JTextField sureNameTF;
-    private javax.swing.JLabel UsernameLB;
+    private javax.swing.JLabel usernameLB;
     private javax.swing.JTextField usernameTF;
     private javax.swing.JPasswordField confirmPassTF;
     private javax.swing.JCheckBox jCheckBox1;

@@ -1,7 +1,6 @@
 package Login_Register_Page;
 
 import MainPage.LecturerPage;
-import Program.LecturerPageTest;
 import Users.AllUser;
 import Users.User;
 import Function.Time;
@@ -21,7 +20,7 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addLoginStyle(UsernameTF);
-        addLoginStyle(PasswordTF);
+        addLoginStyle(passwordTF);
         setVisible(true);
     }
 
@@ -30,21 +29,21 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        LeftBackGroundpanel = new javax.swing.JPanel();
+        leftBackGroundpanel = new javax.swing.JPanel();
         scheduleiconLB = new javax.swing.JLabel();
         KuScheduletxtLB = new javax.swing.JLabel();
-        RightBackGroundpanel = new javax.swing.JPanel();
-        LoginLB = new javax.swing.JLabel();
+        rightBackGroundpanel = new javax.swing.JPanel();
+        loginLB = new javax.swing.JLabel();
         KuiconLB = new javax.swing.JLabel();
         UsernameTF = new javax.swing.JTextField();
-        PassiconLB = new javax.swing.JLabel();
-        UsericonLB = new javax.swing.JLabel();
+        passiconLB = new javax.swing.JLabel();
+        usericonLB = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        LoginButton = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
         SignupButton = new javax.swing.JButton();
-        PasswordTF = new javax.swing.JPasswordField();
+        passwordTF = new javax.swing.JPasswordField();
         showpassCB = new javax.swing.JCheckBox();
-        ShowIncorrect = new javax.swing.JLabel();
+        showIncorrect = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusCycleRoot(false);
@@ -54,38 +53,38 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
         jPanel1.setLayout(null);
 
-        LeftBackGroundpanel.setBackground(new java.awt.Color(2, 188, 119));
-        LeftBackGroundpanel.setPreferredSize(new java.awt.Dimension(400, 500));
-        LeftBackGroundpanel.setLayout(null);
+        leftBackGroundpanel.setBackground(new java.awt.Color(2, 188, 119));
+        leftBackGroundpanel.setPreferredSize(new java.awt.Dimension(400, 500));
+        leftBackGroundpanel.setLayout(null);
 
         scheduleiconLB.setIcon(new javax.swing.ImageIcon("src/resource/Image/150x150_schedule.png")); // NOI18N
         scheduleiconLB.setText("jLabel1");
         scheduleiconLB.setPreferredSize(new java.awt.Dimension(150, 150));
-        LeftBackGroundpanel.add(scheduleiconLB);
+        leftBackGroundpanel.add(scheduleiconLB);
         scheduleiconLB.setBounds(130, 130, 150, 150);
 
         KuScheduletxtLB.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         KuScheduletxtLB.setForeground(new java.awt.Color(255, 255, 255));
         KuScheduletxtLB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         KuScheduletxtLB.setText("KU schedule");
-        LeftBackGroundpanel.add(KuScheduletxtLB);
+        leftBackGroundpanel.add(KuScheduletxtLB);
         KuScheduletxtLB.setBounds(120, 280, 150, 50);
 
-        jPanel1.add(LeftBackGroundpanel);
-        LeftBackGroundpanel.setBounds(0, 0, 400, 500);
+        jPanel1.add(leftBackGroundpanel);
+        leftBackGroundpanel.setBounds(0, 0, 400, 500);
 
-        RightBackGroundpanel.setBackground(new java.awt.Color(255, 255, 255));
-        RightBackGroundpanel.setPreferredSize(new java.awt.Dimension(400, 500));
-        RightBackGroundpanel.setLayout(null);
+        rightBackGroundpanel.setBackground(new java.awt.Color(255, 255, 255));
+        rightBackGroundpanel.setPreferredSize(new java.awt.Dimension(400, 500));
+        rightBackGroundpanel.setLayout(null);
 
-        LoginLB.setFont(new java.awt.Font("Angsana New", 0, 36)); // NOI18N
-        LoginLB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LoginLB.setText("Login");
-        RightBackGroundpanel.add(LoginLB);
-        LoginLB.setBounds(160, 170, 80, 43);
+        loginLB.setFont(new java.awt.Font("Angsana New", 0, 36)); // NOI18N
+        loginLB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loginLB.setText("Login");
+        rightBackGroundpanel.add(loginLB);
+        loginLB.setBounds(160, 170, 80, 43);
 
         KuiconLB.setIcon(new javax.swing.ImageIcon("src/resource/Image/100x100_ku_icon_no_bg.png")); // NOI18N
-        RightBackGroundpanel.add(KuiconLB);
+        rightBackGroundpanel.add(KuiconLB);
         KuiconLB.setBounds(150, 40, 100, 100);
 
         UsernameTF.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -100,30 +99,30 @@ public class Login extends javax.swing.JFrame {
                 UsernameTFFocusLost(evt);
             }
         });
-        RightBackGroundpanel.add(UsernameTF);
+        rightBackGroundpanel.add(UsernameTF);
         UsernameTF.setBounds(140, 240, 180, 40);
 
-        PassiconLB.setIcon(new javax.swing.ImageIcon("src/resource/Image/100x100_pass.png")); // NOI18N
-        RightBackGroundpanel.add(PassiconLB);
-        PassiconLB.setBounds(100, 300, 20, 20);
+        passiconLB.setIcon(new javax.swing.ImageIcon("src/resource/Image/100x100_pass.png")); // NOI18N
+        rightBackGroundpanel.add(passiconLB);
+        passiconLB.setBounds(100, 300, 20, 20);
 
-        UsericonLB.setIcon(new javax.swing.ImageIcon("src/resource/Image/100x100user.png")); // NOI18N
-        RightBackGroundpanel.add(UsericonLB);
-        UsericonLB.setBounds(100, 250, 20, 20);
+        usericonLB.setIcon(new javax.swing.ImageIcon("src/resource/Image/100x100user.png")); // NOI18N
+        rightBackGroundpanel.add(usericonLB);
+        usericonLB.setBounds(100, 250, 20, 20);
 
         jLabel3.setText("if don't have an account ");
-        RightBackGroundpanel.add(jLabel3);
+        rightBackGroundpanel.add(jLabel3);
         jLabel3.setBounds(10, 440, 140, 16);
 
-        LoginButton.setFocusPainted(false);
-        LoginButton.setText("Login");
-        LoginButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        loginButton.setFocusPainted(false);
+        loginButton.setText("Login");
+        loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LoginButtonMouseClicked(evt);
             }
         });
-        RightBackGroundpanel.add(LoginButton);
-        LoginButton.setBounds(250, 360, 70, 23);
+        rightBackGroundpanel.add(loginButton);
+        loginButton.setBounds(250, 360, 70, 23);
 
         SignupButton.setFocusPainted(false);
         SignupButton.setText("Sign up");
@@ -132,13 +131,13 @@ public class Login extends javax.swing.JFrame {
                 SignupButtonMouseClicked(evt);
             }
         });
-        RightBackGroundpanel.add(SignupButton);
+        rightBackGroundpanel.add(SignupButton);
         SignupButton.setBounds(150, 440, 80, 20);
 
-        PasswordTF.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        PasswordTF.setText("Password");
-        PasswordTF.setEchoChar((char) 0);
-        PasswordTF.addFocusListener(new java.awt.event.FocusAdapter() {
+        passwordTF.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        passwordTF.setText("Password");
+        passwordTF.setEchoChar((char) 0);
+        passwordTF.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 PasswordTFFocusGained(evt);
             }
@@ -146,8 +145,8 @@ public class Login extends javax.swing.JFrame {
                 PasswordTFFocusLost(evt);
             }
         });
-        RightBackGroundpanel.add(PasswordTF);
-        PasswordTF.setBounds(140, 290, 180, 40);
+        rightBackGroundpanel.add(passwordTF);
+        passwordTF.setBounds(140, 290, 180, 40);
 
         showpassCB.setOpaque(false);
         showpassCB.setFocusPainted(false);
@@ -158,17 +157,17 @@ public class Login extends javax.swing.JFrame {
                 showpassCBActionPerformed(evt);
             }
         });
-        RightBackGroundpanel.add(showpassCB);
+        rightBackGroundpanel.add(showpassCB);
         showpassCB.setBounds(140, 340, 160, 20);
 
-        ShowIncorrect.setForeground(new java.awt.Color(255, 51, 51));
-        ShowIncorrect.setText("");
-        RightBackGroundpanel.add(ShowIncorrect);
-        ShowIncorrect.setHorizontalTextPosition(SwingConstants.CENTER);
-        ShowIncorrect.setBounds(195, 220, 200, 16);
+        showIncorrect.setForeground(new java.awt.Color(255, 51, 51));
+        showIncorrect.setText("");
+        rightBackGroundpanel.add(showIncorrect);
+        showIncorrect.setHorizontalTextPosition(SwingConstants.CENTER);
+        showIncorrect.setBounds(195, 220, 200, 16);
 
-        jPanel1.add(RightBackGroundpanel);
-        RightBackGroundpanel.setBounds(400, 0, 400, 500);
+        jPanel1.add(rightBackGroundpanel);
+        rightBackGroundpanel.setBounds(400, 0, 400, 500);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,10 +188,10 @@ public class Login extends javax.swing.JFrame {
     private void showpassCBActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         if(showpassCB.isSelected()){
-            PasswordTF.setEchoChar((char)0);
+            passwordTF.setEchoChar((char)0);
         }else{
-            if (!PasswordTF.getText().equals("Password")) {
-                PasswordTF.setEchoChar('●');
+            if (!passwordTF.getText().equals("Password")) {
+                passwordTF.setEchoChar('●');
             }
         }
     }
@@ -214,20 +213,20 @@ public class Login extends javax.swing.JFrame {
 
     private void PasswordTFFocusGained(java.awt.event.FocusEvent evt) {
         // TODO add your handling code here:
-        if(PasswordTF.getText().equals("Password")){
-            PasswordTF.setText("");
-            PasswordTF.requestFocus();
-            PasswordTF.setEchoChar('●');
-            removeLoginStyle(PasswordTF);
+        if(passwordTF.getText().equals("Password")){
+            passwordTF.setText("");
+            passwordTF.requestFocus();
+            passwordTF.setEchoChar('●');
+            removeLoginStyle(passwordTF);
         }
-        PasswordTF.setForeground(Color.BLACK);
+        passwordTF.setForeground(Color.BLACK);
     }
     private void PasswordTFFocusLost(java.awt.event.FocusEvent evt) {
         // TODO add your handling code here:
-        if(PasswordTF.getText().length()==0){
-            addLoginStyle(PasswordTF);
-            PasswordTF.setText("Password");
-            PasswordTF.setEchoChar((char) 0);
+        if(passwordTF.getText().length()==0){
+            addLoginStyle(passwordTF);
+            passwordTF.setText("Password");
+            passwordTF.setEchoChar((char) 0);
         }
     }
 
@@ -239,8 +238,8 @@ public class Login extends javax.swing.JFrame {
     private void LoginButtonMouseClicked(java.awt.event.MouseEvent evt) {
         boolean haveUser = false;
         String username = UsernameTF.getText();
-        String password = PasswordTF.getText();
-        AllUser a = new AllUser();
+        String password = passwordTF.getText();
+        AllUser a ;
         if ((a = AllUser.readUserObjFile()) != null){
             a = AllUser.readUserObjFile();
             if(username != null){
@@ -252,57 +251,51 @@ public class Login extends javax.swing.JFrame {
                     }
                 }
             }
-        }
-        for(String i : a.getAllkey()){
-            System.out.println(i);
-        }
-        if (haveUser){
-            if(password.equals(a.getUserMap().get(username).getPassword())){
-                if(username.contains("b")){
-                    User student = a.getUserMap().get(username);
-                    StudentPage stp = new StudentPage(student);
-                    stp.setVisible(true);
-                    stp.pack();
-                    stp.setLocationRelativeTo(null);
-                    stp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    this.dispose();
-                }else if(username.contains("a")){
-                    User lecturer = a.getUserMap().get(username);
-                    LecturerPage ltp = new LecturerPage(a.getUserMap().get(username));
-                    ltp.setVisible(true);
-                    ltp.pack();
-                    ltp.setLocationRelativeTo(null);
-                    ltp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    this.dispose();
+            if (haveUser){
+                if(password.equals(a.getUserMap().get(username).getPassword())){
+                    if(username.contains("b")){
+                        User student = a.getUserMap().get(username);
+                        StudentPage stp = new StudentPage(student);
+//                        stp.setVisible(true);
+//                        stp.pack();
+//                        stp.setLocationRelativeTo(null);
+//                        stp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        this.dispose();
+                    }else if(username.contains("a")){
+                        User lecturer = a.getUserMap().get(username);
+                        LecturerPage ltp = new LecturerPage(a.getUserMap().get(username));
+//                        ltp.setVisible(true);
+//                        ltp.pack();
+//                        ltp.setLocationRelativeTo(null);
+//                        ltp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        this.dispose();
+                    }
+                }else{
+                    int answer = JOptionPane.showConfirmDialog(
+                            null,
+                            "Do you want to create an new account?",
+                            "User Incorrected password",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE,
+                            new ImageIcon("src/resource/Image/confirmButtonImage.png")
+                    );
+                    if(answer == JOptionPane.YES_OPTION){
+                        a.getUserMap().remove(username);
+                        AllUser.writeUserObjFile(a);
+                    }else{
+                        showIncorrect.setText("Incorrected password");
+                        Time.delay(2000,()-> showIncorrect.setText(""));
+                    }
                 }
             }else{
-                int answer = JOptionPane.showConfirmDialog(
-                        null,
-                        "Do you want to create an new account?",
-                        "User Incorrected password",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,
-                        new ImageIcon("src/resource/Image/confirmButtonImage.png")
-                );
-                if(answer == JOptionPane.YES_OPTION){
-                    a.getUserMap().remove(username);
-                    AllUser.writeUserObjFile(a);
-                }else{
-                    ShowIncorrect.setText("Incorrected password");
-                    Time.delay(2000,()->ShowIncorrect.setText(""));
+                JLabel message = new JLabel("Do you want to create an account?");
+                message.setForeground(Color.RED);
+                message.setOpaque(false);
+                int answer = JOptionPane.showConfirmDialog(null, message, "User not found", JOptionPane.YES_NO_OPTION);
+                if (answer == JOptionPane.YES_OPTION) {
+                    Register rgst = new Register();
+                    dispose();
                 }
-            }
-        }else{
-            JLabel message = new JLabel("Do you want to create an account?");
-            message.setForeground(Color.RED);
-            message.setOpaque(false);
-            int answer = JOptionPane.showConfirmDialog(null, message, "User not found", JOptionPane.YES_NO_OPTION);
-            if (answer == JOptionPane.YES_OPTION) {
-                Register rgst = new Register();
-
-
-                // Dispose the current Login JFrame
-                dispose();
             }
         }
     }
@@ -324,15 +317,15 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JLabel KuScheduletxtLB;
     private javax.swing.JLabel KuiconLB;
-    private javax.swing.JPanel LeftBackGroundpanel;
-    private javax.swing.JButton LoginButton;
-    private javax.swing.JLabel LoginLB;
-    private javax.swing.JLabel PassiconLB;
-    private javax.swing.JPasswordField PasswordTF;
-    private javax.swing.JPanel RightBackGroundpanel;
-    private javax.swing.JLabel ShowIncorrect;
+    private javax.swing.JPanel leftBackGroundpanel;
+    private javax.swing.JButton loginButton;
+    private javax.swing.JLabel loginLB;
+    private javax.swing.JLabel passiconLB;
+    private javax.swing.JPasswordField passwordTF;
+    private javax.swing.JPanel rightBackGroundpanel;
+    private javax.swing.JLabel showIncorrect;
     private javax.swing.JButton SignupButton;
-    private javax.swing.JLabel UsericonLB;
+    private javax.swing.JLabel usericonLB;
     private javax.swing.JTextField UsernameTF;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
