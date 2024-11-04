@@ -13,6 +13,7 @@ import Users.Lecturer;
 import Users.User;
 import Users.Student;
 
+import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.*;
@@ -53,7 +54,19 @@ public class Register extends javax.swing.JFrame {
         KuScheduletxtLB = new javax.swing.JLabel();
         RegistertxtLB1 = new javax.swing.JLabel();
         RegistericonLB = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        //jPanel3 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(Color.white);
+
+                // Draw rounded rectangle with the specified corner radius
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 60, 60);
+                g2.dispose();
+            }
+        };
         ConfirmPassLB = new javax.swing.JLabel();
         FirstNameLB = new javax.swing.JLabel();
         SureNameLB = new javax.swing.JLabel();
@@ -70,7 +83,7 @@ public class Register extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(2, 188, 119));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
         jPanel1.setLayout(null);
 
@@ -84,7 +97,7 @@ public class Register extends javax.swing.JFrame {
         KuScheduletxtLB.setText("Ku Schedule");
         KuScheduletxtLB.setToolTipText("");
         jPanel2.add(KuScheduletxtLB);
-        KuScheduletxtLB.setBounds(150, 350, 150, 30);
+        KuScheduletxtLB.setBounds(130, 350, 150, 30);
 
         RegistertxtLB1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         RegistertxtLB1.setForeground(new java.awt.Color(255, 255, 255));
@@ -92,11 +105,11 @@ public class Register extends javax.swing.JFrame {
         RegistertxtLB1.setText("Register");
         RegistertxtLB1.setToolTipText("");
         jPanel2.add(RegistertxtLB1);
-        RegistertxtLB1.setBounds(150, 320, 150, 30);
+        RegistertxtLB1.setBounds(130, 320, 150, 30);
 
         RegistericonLB.setIcon(new javax.swing.ImageIcon("src/resource/Image/JobApp_preview.png")); // NOI18N
         jPanel2.add(RegistericonLB);
-        RegistericonLB.setBounds(-10, 30, 430, 350);
+        RegistericonLB.setBounds(-30, 30, 430, 350);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(400, 0, 400, 500);
@@ -192,7 +205,8 @@ public class Register extends javax.swing.JFrame {
         ShowPassCB.setBounds(180, 310, 130, 20);
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(0, 0, 400, 500);
+//        jPanel3.setBounds(0, 0, 400, 500);
+        jPanel3.setBounds(10, 20, 380, 460);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
