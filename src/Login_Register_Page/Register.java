@@ -14,8 +14,10 @@ import Users.User;
 import Users.Student;
 
 import java.awt.*;
+import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 public class Register extends javax.swing.JFrame {
@@ -26,7 +28,7 @@ public class Register extends javax.swing.JFrame {
     public Register() {
         initComponents();
         this.setResizable(false);
-        addClearOnFocusListener(usernameTF,"b6620xxxxxx or axxxx");
+        //addClearOnFocusListener(usernameTF,"b6620xxxxxx or axxxx");
         addClearOnFocusListener(firstNameTF,"Input your name pls");
         addClearOnFocusListener(sureNameTF,"Input your surname pls");
         addClearOnFocusListener(usernameTF,"Have user already");
@@ -135,6 +137,45 @@ public class Register extends javax.swing.JFrame {
         jPanel3.add(surNameLB);
         surNameLB.setBounds(20, 130, 130, 40);
 
+
+        usernameTF.setText("b6620xxxxxx or axxxx");
+        usernameTF.setForeground(Color.gray);
+        usernameTF.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (usernameTF.getText().equals("") || usernameTF.getText().equals("b6620xxxxxx or axxxx")) {
+                    usernameTF.setText("b6620xxxxxx or axxxx");
+                    usernameTF.setForeground(Color.gray);
+                }
+            }
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                usernameTF.setForeground(Color.black);
+                if (usernameTF.getText().equals("b6620xxxxxx or axxxx")) {
+                   usernameTF.setText("");
+                }
+            }
+        });
+        enterKeyDispatcher =  e -> {
+            if (e.getID() == KeyEvent.KEY_PRESSED && e.getKeyCode() == KeyEvent.VK_ENTER) {
+                ConfirmBehavior();
+                return true;
+            }
+            return false;
+        };
+        escKeyDispatcher = e -> {
+            if (e.getID() == KeyEvent.KEY_PRESSED && e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(enterKeyDispatcher);
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(escKeyDispatcher);
+                new Login();
+                this.dispose();
+                return true;
+            }
+            return false;
+        };
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(enterKeyDispatcher);
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(escKeyDispatcher);
         usernameLB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         usernameLB.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         usernameLB.setText("Username");
@@ -225,6 +266,98 @@ public class Register extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    private void ConfirmBehavior() {
+        boolean check = true ;
+        String fullName = firstNameTF.getText();
+        String surName = sureNameTF.getText();
+        String username = usernameTF.getText();
+        String password = passwordTF.getText();
+        String conPass = confirmPassTF.getText();
+        if(fullName.equals("")){
+            firstNameTF.setText("Input your name pls");
+            check = false;
+        }
+        if(surName.equals("")){
+            sureNameTF.setText("Input your surname pls");
+            check = false;
+        }
+        if(((username.indexOf("b") == 0) && username.length() == 11)||((username.indexOf("a") == 0) && username.length() == 5)){
+            AllUser a = new AllUser();
+            if((AllUser.readUserObjFile())!=null){
+                a = AllUser.readUserObjFile();
+                for(String i : a.getAllkey()){
+                    if(username.equals(i)){
+                        System.out.println(i);
+                        usernameTF.setText("Have user already");
+                        check = false;
+                    }
+                }
+            }
+            int countBigLetter = 0;
+            int countSmallLetter = 0;
+            for (char i : password.toCharArray()) {
+                if(i > 'A' && i < 'Z') {
+                    countBigLetter ++;
+                }else if (i > 'a' && i < 'z') {
+                    countSmallLetter ++;
+                }
+            }
+            if (countBigLetter < 1 && countSmallLetter < 2 && check) {
+                passwordTF.setText("1 big letter and 3 small letter");
+                passwordTF.setEchoChar((char) 0);
+                check = false;
+            }
+            if (!(password.equals(conPass)) && check) {
+                passwordTF.setText("Password not equal");
+                passwordTF.setEchoChar((char) 0);
+                check = false;
+            }
+            if(check){
+//            System.out.println("11");
+                if(username.contains("b")){
+                    User newUser = new Student(username,fullName,surName,password,a);
+                    AllUser.writeUserObjFile(a);
+                    KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(enterKeyDispatcher);
+                    KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(escKeyDispatcher);
+                    new Login();
+                    this.dispose();
+                }else if (username.contains("a")){
+                    String showPopUp = "Enter Lecturer code";
+                    boolean checkPass = true;
+                    boolean firstInput = true;
+                    while(checkPass){
+                        JTextField passwordField = new JPasswordField();
+                        int option = JOptionPane.showConfirmDialog(
+                                null,
+                                passwordField,
+                                showPopUp,
+                                JOptionPane.OK_CANCEL_OPTION,
+                                JOptionPane.PLAIN_MESSAGE);
+                        if(option == JOptionPane.OK_OPTION){
+                            if(passwordField.getText().equals("Inwza007xlucifer")){
+                                checkPass = false;
+                                User newUser = new Lecturer(username,fullName,surName,password,a);
+                                AllUser.writeUserObjFile(a);
+                                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(enterKeyDispatcher);
+                                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(escKeyDispatcher);
+                                new Login();
+                                this.dispose();
+                            }
+                        }else{
+                            System.exit(0);
+                        }
+                        if (firstInput) {
+                            showPopUp = "Wrong password Try again!";
+                            firstInput = false;
+                        }
+                    }
+                }
+            }
+        }else{
+            usernameTF.setText("b6620xxxxxx or axxxx");
+        }
+    }
+
     private void ConfirmMouseClicked(java.awt.event.MouseEvent evt) {
         boolean check = true ;
         String fullName = firstNameTF.getText();
@@ -276,6 +409,8 @@ public class Register extends javax.swing.JFrame {
                 if(username.contains("b")){
                     User newUser = new Student(username,fullName,surName,password,a);
                     AllUser.writeUserObjFile(a);
+                    KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(enterKeyDispatcher);
+                    KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(escKeyDispatcher);
                     new Login();
                     this.dispose();
                 }else if (username.contains("a")){
@@ -295,6 +430,8 @@ public class Register extends javax.swing.JFrame {
                                 checkPass = false;
                                 User newUser = new Lecturer(username,fullName,surName,password,a);
                                 AllUser.writeUserObjFile(a);
+                                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(enterKeyDispatcher);
+                                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(escKeyDispatcher);
                                 new Login();
                                 this.dispose();
                             }
@@ -314,6 +451,8 @@ public class Register extends javax.swing.JFrame {
     }
 
     private void BackBTMouseClicked(java.awt.event.MouseEvent evt) {
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(enterKeyDispatcher);
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(escKeyDispatcher);
         new Login();
         this.dispose();
     }
@@ -329,12 +468,12 @@ public class Register extends javax.swing.JFrame {
         }
     }
 
-
     private void addClearOnFocusListener(javax.swing.JTextField textField, String errorMessage) {
-        textField.addFocusListener(new FocusListener() {
+        textField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
                 // Clear the field only if it shows the error message
+
                 if (textField.getText().equals(errorMessage)) {
                     textField.setText("");
                 }
@@ -348,6 +487,8 @@ public class Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
+    private KeyEventDispatcher enterKeyDispatcher;
+    private KeyEventDispatcher escKeyDispatcher;
     private javax.swing.JButton backBT;
     private javax.swing.JButton confirm;
     private javax.swing.JLabel confirmPassLB;

@@ -6,8 +6,9 @@ import Users.User;
 import Function.Time;
 import MainPage.StudentPage;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 public class Login extends javax.swing.JFrame {
@@ -121,6 +122,14 @@ public class Login extends javax.swing.JFrame {
                 LoginButtonMouseClicked(evt);
             }
         });
+        enterKeyDispatcher = e -> {
+            if (e.getID() == KeyEvent.KEY_PRESSED && e.getKeyCode() == KeyEvent.VK_ENTER) {
+                LoginBehavior();
+                return true;
+            }
+            return false;
+        };
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(enterKeyDispatcher);
         rightBackGroundpanel.add(loginButton);
         loginButton.setBounds(250, 360, 70, 23);
 
@@ -231,20 +240,21 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void SignupButtonMouseClicked(java.awt.event.MouseEvent evt) {
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(enterKeyDispatcher);
         new Register();
         this.dispose();
     }
 
-    private void LoginButtonMouseClicked(java.awt.event.MouseEvent evt) {
+    private void LoginBehavior() {
         boolean haveUser = false;
         String username = UsernameTF.getText();
         String password = passwordTF.getText();
         AllUser a ;
-        if ((a = AllUser.readUserObjFile()) != null){
+        if ((AllUser.readUserObjFile()) != null){
             a = AllUser.readUserObjFile();
             if(username != null){
                 for(String i : a.getAllkey()){
-                    System.out.println(i);
+                    //System.out.println(i);
                     if(username.equals(i)){
                         haveUser = true;
                         break;
@@ -256,21 +266,14 @@ public class Login extends javax.swing.JFrame {
                     if(username.contains("b")){
                         User student = a.getUserMap().get(username);
                         StudentPage stp = new StudentPage(student);
-//                        stp.setVisible(true);
-//                        stp.pack();
-//                        stp.setLocationRelativeTo(null);
-//                        stp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         this.dispose();
                     }else if(username.contains("a")){
                         User lecturer = a.getUserMap().get(username);
                         LecturerPage ltp = new LecturerPage(a.getUserMap().get(username));
-//                        ltp.setVisible(true);
-//                        ltp.pack();
-//                        ltp.setLocationRelativeTo(null);
-//                        ltp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         this.dispose();
                     }
                 }else{
+                    KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(enterKeyDispatcher);
                     int answer = JOptionPane.showConfirmDialog(
                             null,
                             "Do you want to create an new account?",
@@ -286,15 +289,82 @@ public class Login extends javax.swing.JFrame {
                         showIncorrect.setText("Incorrected password");
                         Time.delay(2000,()-> showIncorrect.setText(""));
                     }
+                    KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(enterKeyDispatcher);
                 }
             }else{
                 JLabel message = new JLabel("Do you want to create an account?");
                 message.setForeground(Color.RED);
                 message.setOpaque(false);
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(enterKeyDispatcher);
+                int answer = JOptionPane.showConfirmDialog(null, message, "User not found", JOptionPane.YES_NO_OPTION);
+                System.out.println("removeKey");
+                if (answer == JOptionPane.YES_OPTION) {
+                    new Register();
+                    dispose();
+                } else {
+                    KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(enterKeyDispatcher);
+                }
+            }
+        }
+    }
+
+    private void LoginButtonMouseClicked(java.awt.event.MouseEvent evt) {
+        boolean haveUser = false;
+        String username = UsernameTF.getText();
+        String password = passwordTF.getText();
+        AllUser a ;
+        if ((AllUser.readUserObjFile()) != null){
+            a = AllUser.readUserObjFile();
+            if(username != null){
+                for(String i : a.getAllkey()){
+                    //System.out.println(i);
+                    if(username.equals(i)){
+                        haveUser = true;
+                        break;
+                    }
+                }
+            }
+            if (haveUser){
+                if(password.equals(a.getUserMap().get(username).getPassword())){
+                    if(username.contains("b")){
+                        User student = a.getUserMap().get(username);
+                        StudentPage stp = new StudentPage(student);
+                        this.dispose();
+                    }else if(username.contains("a")){
+                        User lecturer = a.getUserMap().get(username);
+                        LecturerPage ltp = new LecturerPage(a.getUserMap().get(username));
+                        this.dispose();
+                    }
+                }else{
+                    KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(enterKeyDispatcher);
+                    int answer = JOptionPane.showConfirmDialog(
+                            null,
+                            "Do you want to create an new account?",
+                            "User Incorrected password",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE,
+                            new ImageIcon("src/resource/Image/confirmButtonImage.png")
+                    );
+                    if(answer == JOptionPane.YES_OPTION){
+                        a.getUserMap().remove(username);
+                        AllUser.writeUserObjFile(a);
+                    }else{
+                        showIncorrect.setText("Incorrected password");
+                        Time.delay(2000,()-> showIncorrect.setText(""));
+                    }
+                    KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(enterKeyDispatcher);
+                }
+            }else{
+                JLabel message = new JLabel("Do you want to create an account?");
+                message.setForeground(Color.RED);
+                message.setOpaque(false);
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(enterKeyDispatcher);
                 int answer = JOptionPane.showConfirmDialog(null, message, "User not found", JOptionPane.YES_NO_OPTION);
                 if (answer == JOptionPane.YES_OPTION) {
-                    Register rgst = new Register();
+                    new Register();
                     dispose();
+                } else {
+                    KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(enterKeyDispatcher);
                 }
             }
         }
@@ -315,6 +385,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
+    private KeyEventDispatcher enterKeyDispatcher;
     private javax.swing.JLabel KuScheduletxtLB;
     private javax.swing.JLabel KuiconLB;
     private javax.swing.JPanel leftBackGroundpanel;
