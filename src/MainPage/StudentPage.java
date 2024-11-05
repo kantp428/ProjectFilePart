@@ -1,5 +1,6 @@
 package MainPage;
 import CourseMap.ColorMap;
+import Login_Register_Page.Login;
 import Users.User;
 import FilePath.PathCourseSet;
 import CourseMap.MapPanel;
@@ -8,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class StudentPage extends javax.swing.JFrame {
@@ -109,6 +111,17 @@ public class StudentPage extends javax.swing.JFrame {
                 comboBoxActionEvent(evt);
             }
         });
+
+        escDispatcher = e -> {
+          if (e.getID() == KeyEvent.KEY_PRESSED && e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+              KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(escDispatcher);
+              new Login();
+              dispose();
+              return true;
+          }
+          return false;
+        };
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(escDispatcher);
 
         resetButton.setText("RESET");
         resetButton.setFocusPainted(false);
@@ -284,6 +297,7 @@ public class StudentPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
+    private KeyEventDispatcher escDispatcher;
     private boolean resetAllowed;
     private final CardLayout cardLayout = new CardLayout();
     private javax.swing.JComboBox<String> courseComboBox;

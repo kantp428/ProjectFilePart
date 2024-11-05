@@ -1,5 +1,6 @@
 package MainPage;
 import CourseMap.ColorMap;
+import Login_Register_Page.Login;
 import Users.User;
 import FilePath.CourseFileCreatePanel;
 import FilePath.PathCourseSet;
@@ -77,6 +78,18 @@ public class LecturerPage extends javax.swing.JFrame {
                 g2.dispose();
             }
         };
+
+        escDispatcher = e -> {
+          if (e.getID() == KeyEvent.KEY_PRESSED && e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+              KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(escDispatcher);
+              new Login();
+              dispose();
+              return true;
+          }
+          return false;
+        };
+
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(escDispatcher);
 
         requireBoxLabel = new javax.swing.JLabel();
         requireLabel = new javax.swing.JLabel();
@@ -316,6 +329,7 @@ public class LecturerPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify
     private boolean resetAllowed;
+    private KeyEventDispatcher escDispatcher;
     private final CardLayout cardLayout = new CardLayout();
     private final javax.swing.JComboBox<String> courseComboBox;
     private javax.swing.JButton resetButton;
