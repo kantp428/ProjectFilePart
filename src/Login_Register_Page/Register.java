@@ -19,6 +19,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
+import javax.swing.text.DefaultEditorKit;
 
 public class Register extends javax.swing.JFrame {
 
@@ -140,6 +141,8 @@ public class Register extends javax.swing.JFrame {
 
         usernameTF.setText("b6620xxxxxx or axxxx");
         usernameTF.setForeground(Color.gray);
+        usernameTF.getInputMap().put(KeyStroke.getKeyStroke("control C"), "copy");
+        usernameTF.getActionMap().put("copy", new DefaultEditorKit.CopyAction());
         usernameTF.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
@@ -226,9 +229,13 @@ public class Register extends javax.swing.JFrame {
 
         jPanel3.add(confirmPassTF);
         confirmPassTF.setBounds(180, 340, 180, 40);
+        confirmPassTF.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_DOWN_MASK), "none");
+        confirmPassTF.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.CTRL_DOWN_MASK), "none");
 
         passwordTF.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         passwordTF.setPreferredSize(new java.awt.Dimension(180, 40));
+        passwordTF.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_DOWN_MASK), "none");
+        passwordTF.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.CTRL_DOWN_MASK), "none");
 
         jPanel3.add(passwordTF);
         passwordTF.setBounds(180, 270, 180, 40);
@@ -475,6 +482,8 @@ public class Register extends javax.swing.JFrame {
     }
 
     private void addClearOnFocusListener(javax.swing.JTextField textField, String errorMessage) {
+        textField.getInputMap().put(KeyStroke.getKeyStroke("control C"), "copy");
+        textField.getActionMap().put("copy", new DefaultEditorKit.CopyAction());
         textField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {

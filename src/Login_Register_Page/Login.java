@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
+import javax.swing.text.DefaultEditorKit;
 
 public class Login extends javax.swing.JFrame {
 
@@ -102,6 +103,8 @@ public class Login extends javax.swing.JFrame {
         });
         rightBackGroundpanel.add(UsernameTF);
         UsernameTF.setBounds(140, 240, 180, 40);
+        UsernameTF.getInputMap().put(KeyStroke.getKeyStroke("control C"), "copy");
+        UsernameTF.getActionMap().put("copy", new DefaultEditorKit.CopyAction());
 
         passiconLB.setIcon(new javax.swing.ImageIcon("src/resource/Image/100x100_pass.png")); // NOI18N
         rightBackGroundpanel.add(passiconLB);
@@ -143,6 +146,8 @@ public class Login extends javax.swing.JFrame {
         rightBackGroundpanel.add(SignupButton);
         SignupButton.setBounds(150, 440, 80, 20);
 
+        passwordTF.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_DOWN_MASK), "none");
+        passwordTF.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.CTRL_DOWN_MASK), "none");
         passwordTF.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         passwordTF.setText("Password");
         passwordTF.setEchoChar((char) 0);
