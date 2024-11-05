@@ -473,6 +473,9 @@ public class Register extends javax.swing.JFrame {
             @Override
             public void focusGained(FocusEvent e) {
                 // Clear the field only if it shows the error message
+                if (errorMessage.equals("Password not equal") && !ShowPassCB.isSelected()) {
+                    passwordTF.setEchoChar('●');
+                }
 
                 if (textField.getText().equals(errorMessage)) {
                     textField.setText("");
@@ -504,11 +507,9 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JTextField sureNameTF;
     private javax.swing.JLabel usernameLB;
     private javax.swing.JTextField usernameTF;
-    private javax.swing.JPasswordField confirmPassTF;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JPasswordField confirmPassTF;;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JCheckBox showpassCB;
     // End of variables declaration
 }
