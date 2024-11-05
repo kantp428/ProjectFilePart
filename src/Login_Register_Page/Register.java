@@ -14,10 +14,7 @@ import Users.User;
 import Users.Student;
 
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.text.DefaultEditorKit;
 
@@ -482,8 +479,12 @@ public class Register extends javax.swing.JFrame {
     }
 
     private void addClearOnFocusListener(javax.swing.JTextField textField, String errorMessage) {
-        textField.getInputMap().put(KeyStroke.getKeyStroke("control C"), "copy");
-        textField.getActionMap().put("copy", new DefaultEditorKit.CopyAction());
+        Action copyAction = textField.getActionMap().get(DefaultEditorKit.copyAction);
+
+
+        textField.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_DOWN_MASK), "none");
+        textField.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.CTRL_DOWN_MASK), "none");
+
         textField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
