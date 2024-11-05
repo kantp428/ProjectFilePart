@@ -296,20 +296,23 @@ public class Register extends javax.swing.JFrame {
             int countBigLetter = 0;
             int countSmallLetter = 0;
             for (char i : password.toCharArray()) {
-                if(i > 'A' && i < 'Z') {
+                if(i >= 'A' && i <= 'Z') {
                     countBigLetter ++;
-                }else if (i > 'a' && i < 'z') {
+                }else if (i >= 'a' && i <= 'z') {
                     countSmallLetter ++;
                 }
             }
-            if (countBigLetter < 1 && countSmallLetter < 2 && check) {
+
+            if (( countBigLetter < 1 || countSmallLetter < 2 ) && check) {
                 passwordTF.setText("1 big letter and 3 small letter");
                 passwordTF.setEchoChar((char) 0);
+                confirmPassTF.setText("");
                 check = false;
             }
             if (!(password.equals(conPass)) && check) {
                 passwordTF.setText("Password not equal");
                 passwordTF.setEchoChar((char) 0);
+                confirmPassTF.setText("");
                 check = false;
             }
             if(check){
@@ -394,14 +397,17 @@ public class Register extends javax.swing.JFrame {
                     countSmallLetter ++;
                 }
             }
-            if (countBigLetter < 1 && countSmallLetter < 2 && check) {
+
+            if ((countBigLetter < 1 || countSmallLetter < 2) && check) {
                 passwordTF.setText("1 big letter and 3 small letter");
                 passwordTF.setEchoChar((char) 0);
+                confirmPassTF.setText("");
                 check = false;
             }
             if (!(password.equals(conPass)) && check) {
                 passwordTF.setText("Password not equal");
                 passwordTF.setEchoChar((char) 0);
+                confirmPassTF.setText("");
                 check = false;
             }
             if(check){
