@@ -388,9 +388,9 @@ public class Register extends javax.swing.JFrame {
             int countBigLetter = 0;
             int countSmallLetter = 0;
             for (char i : password.toCharArray()) {
-                if(i > 'A' && i < 'Z') {
+                if(i >= 'A' && i <= 'Z') {
                     countBigLetter ++;
-                }else if (i > 'a' && i < 'z') {
+                }else if (i >= 'a' && i <= 'z') {
                     countSmallLetter ++;
                 }
             }
