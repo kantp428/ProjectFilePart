@@ -1,6 +1,8 @@
 package Program;
 
 import Login_Register_Page.Login;
+import MainPage.LecturerPage;
+import Users.Lecturer;
 
 import javax.swing.*;
 
@@ -11,6 +13,6 @@ public class Main {
         } catch (Exception e) {
             //
         }
-        new Login();
+        new LecturerPage();
     }
 }

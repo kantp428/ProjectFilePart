@@ -34,6 +34,16 @@ public class CourseFileCreatePanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, this, "CourseCreator", JOptionPane.PLAIN_MESSAGE);
     }
 
+    public CourseFileCreatePanel() {
+        initComponents();
+
+        lecturerPage = null;
+        fc.setMultiSelectionEnabled(false);
+        fc.setCurrentDirectory(new File("C:\\"));
+        // Call this panel to option pane
+        JOptionPane.showMessageDialog(null, this, "CourseCreator", JOptionPane.PLAIN_MESSAGE);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
