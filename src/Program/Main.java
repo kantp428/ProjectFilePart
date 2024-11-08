@@ -1,5 +1,6 @@
 package Program;
 
+import JarMainPage.MainPage;
 import Login_Register_Page.Login;
 import MainPage.LecturerPage;
 import Users.Lecturer;
@@ -13,6 +14,6 @@ public class Main {
         } catch (Exception e) {
             //
         }
-        new LecturerPage();
+        new MainPage();
     }
 }

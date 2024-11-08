@@ -5,6 +5,7 @@
 package FilePath;
 
 import Course.CreateObjCourse;
+import Course.JarCreateObj;
 import Function.Time;
 import JarMainPage.MainPage;
 import MainPage.LecturerPage;
@@ -65,6 +66,7 @@ public class JarCourseCreatePanel extends JPanel {
         nameTextField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
+                nameTextField.setForeground(Color.BLACK);
                 if (nameTextField.getText().equals("Input Course Name")) {
                     nameTextField.setText("");
                 }
@@ -74,6 +76,7 @@ public class JarCourseCreatePanel extends JPanel {
             public void focusLost(FocusEvent e) {
                 if (nameTextField.getText().isEmpty()) {
                     nameTextField.setText("Input Course Name");
+                    nameTextField.setForeground(Color.GRAY);
                 }
             }
         });
@@ -127,7 +130,7 @@ public class JarCourseCreatePanel extends JPanel {
         fileLb1.setText("Course: ");
 
         nameTextField.setFont(new Font("Segoe UI", 0, 18)); // NOI18N
-        nameTextField.setForeground(new Color(102, 102, 102));
+        nameTextField.setForeground(Color.GRAY);
         nameTextField.setText("Input Course Name");
 
         GroupLayout insidePanelLayout = new GroupLayout(insidePanel);
@@ -227,7 +230,7 @@ public class JarCourseCreatePanel extends JPanel {
             Time.delay(1000, ()->statusLb.setText(""));
 
         } else { // Valid CSV file
-            new CreateObjCourse(nameTextField.getText(),filePathLb.getText());
+            new JarCreateObj(nameTextField.getText(),filePathLb.getText());
             if (mainPage != null) {
                 mainPage.updateCourseComboBox();
             }

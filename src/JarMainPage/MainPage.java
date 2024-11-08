@@ -2,9 +2,7 @@ package JarMainPage;
 
 import CourseMap.ColorMap;
 import CourseMap.MapPanel;
-import FilePath.CourseFileCreatePanel;
-import FilePath.JarCourseCreatePanel;
-import FilePath.PathCourseSet;
+import FilePath.*;
 import Login_Register_Page.Login;
 import Users.User;
 
@@ -19,7 +17,7 @@ public class MainPage extends JFrame {
         this.user = null;
         this.fullName = "";
 
-        String[] courseName = PathCourseSet.getCourseName();
+        String[] courseName = JarFilePath.getCourseObj();
 
         if (courseName != null) {
             courseComboBox = new JComboBox<>(courseName);
@@ -63,18 +61,6 @@ public class MainPage extends JFrame {
             }
         };
 
-        escDispatcher = e -> {
-          if (e.getID() == KeyEvent.KEY_PRESSED && e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-              KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(escDispatcher);
-              new Login();
-              dispose();
-              return true;
-          }
-          return false;
-        };
-
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(escDispatcher);
-
         requireBoxLabel = new JLabel();
         requireLabel = new JLabel();
         nextBoxLabel = new JLabel();
@@ -115,7 +101,7 @@ public class MainPage extends JFrame {
             }
         });
 
-        resetButton.setText("RESET");
+        resetButton.setText("DELETE");
         resetButton.setFocusPainted(false);
         resetButton.setFont(new Font("Segoe UI", Font.PLAIN, 16));
         resetButton.setBackground(Color.WHITE);
@@ -282,12 +268,14 @@ public class MainPage extends JFrame {
 
     private void resetButtonMouseClicked(MouseEvent evt) {
         if (!resetAllowed) return;
-        centerPanel.removeAll();
-        String courseName = (String) courseComboBox.getSelectedItem();
-        MapPanel mapPanel = new MapPanel(PathCourseSet.getPathOf(courseName));
-        centerPanel.add(mapPanel, "mapPanel");
+        new DeletePanel();
 
-        cardLayout.show(centerPanel, "mapPanel");
+        centerPanel.removeAll();
+        updateCourseComboBox();
+
+        JPanel blankPanel = new JPanel();
+        centerPanel.add(blankPanel, BorderLayout.CENTER);
+        cardLayout.show(blankPanel, "blankPanel");
 
         // Repaint to make sure the UI is updated
         centerPanel.revalidate();
@@ -295,7 +283,7 @@ public class MainPage extends JFrame {
     }
 
     public void updateCourseComboBox() {
-            String[] courseNames = PathCourseSet.getCourseName();
+            String[] courseNames = JarFilePath.getCourseObj();
 
             courseComboBox.removeAllItems();
 
@@ -313,7 +301,6 @@ public class MainPage extends JFrame {
 
     // Variables declaration - do not modify
     private boolean resetAllowed;
-    private KeyEventDispatcher escDispatcher;
     private final CardLayout cardLayout = new CardLayout();
     private final JComboBox<String> courseComboBox;
     private JButton resetButton;

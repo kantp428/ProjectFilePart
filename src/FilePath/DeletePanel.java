@@ -55,5 +55,6 @@ public class DeletePanel extends JPanel {
 
     public static void main(String[] args) {
         new DeletePanel();
+        //new CourseFileCreatePanel();
     }
 }
