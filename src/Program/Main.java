@@ -1,9 +1,7 @@
 package Program;
 
 import JarMainPage.MainPage;
-import Login_Register_Page.Login;
-import MainPage.LecturerPage;
-import Users.Lecturer;
+
 
 import javax.swing.*;
 
@@ -14,6 +12,6 @@ public class Main {
         } catch (Exception e) {
             //
         }
-        new MainPage();
+        new MainPage().setVisible(true);
     }
 }

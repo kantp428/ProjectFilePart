@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="FileCodingProject:jar">
-    <output-path>$PROJECT_DIR$/../TestJar</output-path>
+    <output-path>$USER_HOME$/OneDrive/เดสก์ท็อป/Test</output-path>
     <root id="archive" name="FileCodingProject.jar">
       <element id="module-output" name="FileCodingProject" />
     </root>

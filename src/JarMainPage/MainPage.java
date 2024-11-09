@@ -239,8 +239,9 @@ public class MainPage extends JFrame {
         // Set default centerPanel
         JPanel blankPanel = new JPanel();
         blankPanel.setPreferredSize(new Dimension(800, 449));
-        centerPanel.add(blankPanel, BorderLayout.CENTER);
+
         centerPanel.add(blankPanel, "blankPanel");
+        cardLayout.show(centerPanel, "blankPanel");
 
         getContentPane().add(centerPanel, BorderLayout.CENTER);
 
@@ -267,15 +268,15 @@ public class MainPage extends JFrame {
     }
 
     private void resetButtonMouseClicked(MouseEvent evt) {
-        if (!resetAllowed) return;
+        //if (!resetAllowed) return;
         new DeletePanel();
 
         centerPanel.removeAll();
         updateCourseComboBox();
 
         JPanel blankPanel = new JPanel();
-        centerPanel.add(blankPanel, BorderLayout.CENTER);
-        cardLayout.show(blankPanel, "blankPanel");
+        centerPanel.add(blankPanel, "blankPanel");
+        cardLayout.show(centerPanel, "blankPanel");
 
         // Repaint to make sure the UI is updated
         centerPanel.revalidate();

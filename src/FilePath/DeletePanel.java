@@ -20,6 +20,15 @@ public class DeletePanel extends JPanel {
         }
 
         JButton deleteButton = new JButton("Delete");
+        Dimension comboBoxDimension = new Dimension(180, 30);
+        courseComboBox.setPreferredSize(comboBoxDimension);
+        courseComboBox.setMaximumSize(comboBoxDimension);
+        courseComboBox.setMinimumSize(comboBoxDimension);
+
+        Dimension delButtonDimension = new Dimension(80, 30);
+        deleteButton.setPreferredSize(delButtonDimension);
+        deleteButton.setMaximumSize(delButtonDimension);
+        deleteButton.setMinimumSize(delButtonDimension);
 
         deleteButton.addActionListener(new ActionListener() {
             @Override
@@ -32,9 +41,13 @@ public class DeletePanel extends JPanel {
         });
 
         courseComboBox.setAlignmentX(Component.CENTER_ALIGNMENT);
+        courseComboBox.setFocusable(false);
         deleteButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        deleteButton.setFocusPainted(false);
 
+        add(Box.createRigidArea(new Dimension(0, 10)));
         add(courseComboBox);
+        add(Box.createRigidArea(new Dimension(0, 10)));
         add(deleteButton);
 
         JOptionPane.showMessageDialog(null, this, "choose delete file", JOptionPane.PLAIN_MESSAGE);
@@ -54,6 +67,11 @@ public class DeletePanel extends JPanel {
     }
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            //
+        }
         new DeletePanel();
         //new CourseFileCreatePanel();
     }
